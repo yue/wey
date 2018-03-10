@@ -1,0 +1,24 @@
+{
+  "name": "yack",
+  "version": "0.0.1",
+  "main": "lib/main.js",
+  "description": "Light-weight Slack client",
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/yue/yack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yue/yack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yue/yack/issues"
+  },
+  "dependencies": {
+    "gui": "0.3.1"
+  },
+  "devDependencies": {
+    "yackage": "file:../yackage"
+  }
+}
