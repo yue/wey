@@ -1,19 +1,22 @@
 {
-  "name": "yack",
+  "name": "wey",
   "version": "0.0.1",
   "main": "lib/main.js",
-  "description": "Light-weight Slack client",
+  "description": "Light-weight desktop Slack client",
+  "scripts": {
+    "dist": "yackage out . --cache-dir yode"
+  },
   "engines": {
     "node": ">=8"
   },
   "license": "GPL-3.0",
-  "homepage": "https://github.com/yue/yack",
+  "homepage": "https://github.com/yue/wey",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yue/yack.git"
+    "url": "https://github.com/yue/wey.git"
   },
   "bugs": {
-    "url": "https://github.com/yue/yack/issues"
+    "url": "https://github.com/yue/wey/issues"
   },
   "dependencies": {
     "gui": "0.3.1"
