@@ -4,10 +4,12 @@
   "main": "lib/main.js",
   "description": "Light-weight desktop Slack client",
   "scripts": {
+    "install": "node scripts/install.js",
     "dist": "yackage out . --cache-dir yode"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8",
+    "yode": "0.3.0"
   },
   "license": "GPL-3.0",
   "homepage": "https://github.com/yue/wey",
@@ -19,6 +21,7 @@
     "url": "https://github.com/yue/wey/issues"
   },
   "dependencies": {
+    "download-yue": "2.x",
     "gui": "0.3.1"
   },
   "devDependencies": {
