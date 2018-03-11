@@ -4,6 +4,7 @@
   "main": "lib/main.js",
   "description": "Light-weight desktop Slack client",
   "scripts": {
+    "start": "node scripts/start.js",
     "install": "node scripts/install.js",
     "dist": "yackage out . --cache-dir yode"
   },
