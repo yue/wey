@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "main": "lib/main.js",
   "description": "Light-weight desktop Slack client",
+  "bin": {
+    "wey": "./scripts/start.js"
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "install": "node scripts/install.js",
