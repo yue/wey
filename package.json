@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "install": "node scripts/install.js",
-    "dist": "yackage out . --cache-dir yode"
+    "build": "yackage build out --cache-dir yode"
   },
   "engines": {
     "node": ">=8",
@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "download-yue": "2.x",
-    "gui": "0.3.1"
+    "gui": "0.3.1",
+    "mini-signals": "1.1.1"
   },
   "devDependencies": {
     "yackage": "file:../yackage"
