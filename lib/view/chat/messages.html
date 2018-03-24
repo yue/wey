@@ -63,8 +63,26 @@
   {{/each}}
 </div>
 <script type="text/javascript" charset="utf-8">
+  // We are ready.
+  wey.ready()
   // Scroll to bottom.
   window.scrollTo(0, document.body.scrollHeight)
+  // External API to add a new message.
+  window.addMessage = function(message) {
+    var msg = document.createElement('div')
+    msg.className = 'msg'
+    msg.innerHTML =
+      '<div class="avatar"><img width="36" height="36" src="' + message.user.avatar + '"/></div>' +
+      '<div class="content">' +
+        '<div class="sender">' +
+          '<div class="name">' + message.user.name + '</div>\n' +
+          '<div class="time">' + message.shortTime + '</div>' +
+        '</div>' +
+        '<div class="text">' + message.text + '</div>' +
+      '</div>'
+    document.getElementById('messages').appendChild(msg)
+    window.scrollTo(0, document.body.scrollHeight)
+  }
 </script>
 </body>
 </html>
