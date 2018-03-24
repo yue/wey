@@ -26,9 +26,10 @@
     "url": "https://github.com/yue/wey/issues"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "download-yue": "2.x",
     "fs-extra": "5.0.0",
-    "gui": "0.3.1",
+    "gui": "0.3.2",
     "mini-signals": "1.1.1",
     "@slack/client": "4.0.1"
   },
