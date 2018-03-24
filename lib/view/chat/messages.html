@@ -15,19 +15,23 @@
     word-wrap: break-word;
   }
   .msg {
-    margin: 5px;
+    margin: 5px 5px 10px 5px;
     display: table;
     border-collapse: collapse;
   }
   .msg > div {
     display: table-cell;
+    vertical-align: top;
   }
   .msg .avatar {
-    width: 36px;
     height: 36px;
   }
+  .msg .avatar img {
+    margin-right: 10px;
+  }
   .msg .sender {
-    height: 18px;
+    height: 15px;
+    line-height: 1;
   }
   .msg .sender > div {
     display: inline-block;
@@ -37,7 +41,6 @@
   }
   .msg .sender .time {
     font-size: 12px;
-    line-height: 1;
     color: #717274;
   }
 </style>
@@ -46,7 +49,7 @@
 <div id="messages">
   {{#each channel.messages}}
   <div class="msg">
-    <div class="avatar">AVA</div>
+    <div class="avatar"><img width="36" height="36" src="{{this.user.avatar}}"/></div>
     <div class="content">
       <div class="sender">
         <div class="name">{{this.user.name}}</div>
