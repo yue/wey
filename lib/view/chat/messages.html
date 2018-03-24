@@ -2,12 +2,66 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    color: #2c2d30;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.46668;
+    word-wrap: break-word;
+  }
+  .msg {
+    margin: 5px;
+    display: table;
+    border-collapse: collapse;
+  }
+  .msg > div {
+    display: table-cell;
+  }
+  .msg .avatar {
+    width: 36px;
+    height: 36px;
+  }
+  .msg .sender {
+    height: 18px;
+  }
+  .msg .sender > div {
+    display: inline-block;
+  }
+  .msg .sender .name {
+    font-weight: 900;
+  }
+  .msg .sender .time {
+    font-size: 12px;
+    line-height: 1;
+    color: #717274;
+  }
+</style>
 </head>
 <body>
-  <div id="message">
+<div id="messages">
+  {{#each channel.messages}}
+  <div class="msg">
+    <div class="avatar">AVA</div>
+    <div class="content">
+      <div class="sender">
+        <div class="name">{{this.user}}</div>
+        <div class="time">{{this.shortTime}}</div>
+      </div>
+      <div class="text">
+        {{this.text}}
+      </div>
+    </div>
   </div>
-  <script type="text/javascript" charset="utf-8">
-    document.getElementById('message').textContent = 'test'
-  </script>
+  {{/each}}
+</div>
+<script type="text/javascript" charset="utf-8">
+  // Scroll to bottom.
+  window.scrollTo(0, document.body.scrollHeight)
+</script>
 </body>
 </html>
