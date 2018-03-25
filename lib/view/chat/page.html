@@ -88,7 +88,9 @@
     // Note: Don't use DOMParser, it has problems with applying CSS styles.
     var wrapper = document.createElement('div')
     wrapper.innerHTML = html
-    messages.appendChild(wrapper.firstChild)
+    var children = wrapper.childNodes
+    for (var i = 0; i < children.length; i++)
+      messages.appendChild(children[i])
     window.scrollTo(0, document.body.scrollHeight)
   }
 </script>
