@@ -85,14 +85,21 @@
   // External API to add a new message.
   window.addMessage = function(message) {
     var msg = document.createElement('div')
-    msg.className = 'msg'
+    if (message.isFolded)
+      msg.className = 'msg folded'
+    else
+      msg.className = 'msg'
     msg.innerHTML =
-      '<div class="avatar"><img width="36" height="36" src="' + message.user.avatar + '"/></div>' +
+      '<div class="avatar">' +
+        (message.isFolded ? '<div class="dummy"></div>' :
+        '<img width="36" height="36" src="' + message.user.avatar + '"/>') +
+      '</div>' +
       '<div class="content">' +
+        (message.isFolded ? '' :
         '<div class="sender">' +
           '<div class="name">' + message.user.name + '</div>\n' +
           '<div class="time">' + message.shortTime + '</div>' +
-        '</div>' +
+        '</div>') +
         '<div class="text">' + message.text + '</div>' +
       '</div>'
     document.getElementById('messages').appendChild(msg)
