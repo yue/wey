@@ -77,17 +77,23 @@
     display: block;
     height: 8px;
   }
-  .text .at, .text a, .text a:link, .text a:visited {
+  .text .at, .text .channel, .text a, .text a:link, .text a:visited {
     color: #0576b9;
     text-decoration: none;
   }
-  .text .at {
-    background: #EAF5FC;
+  .text .at, .text .broadcast {
     padding: 0 2px 1px 2px;
     border-radius: 3px;
   }
-  .text a:hover {
+  .text .channel:hover, .text a:hover {
     text-decoration: underline;
+  }
+  .text .at {
+    background: #EAF5FC;
+  }
+  .text .broadcast {
+    background: #FFF6D1;
+    font-weight: bold;
   }
   .text pre, .text code {
     font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
