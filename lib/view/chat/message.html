@@ -1,0 +1,32 @@
+{{#if message.isDayMarker}}
+<div class="daymarker">
+  <div class="label-wrapper">
+    <div class="label">{{message.dayTime}}</div>
+  </div>
+  <hr class="line">
+</div>
+{{/if}}
+{{#if message.isFolded}}
+<div class="msg folded">
+{{else}}
+<div class="msg">
+{{/if}}
+  <div class="avatar">
+    {{#if message.isFolded}}
+    <div class="dummy"></div>
+    {{else}}
+    <img width="36" height="36" src="{{message.user.avatar}}"/>
+    {{/if}}
+  </div>
+  <div class="content">
+    {{#unless message.isFolded}}
+    <div class="sender">
+      <div class="name">{{message.user.name}}</div>
+      <div class="time">{{message.shortTime}}</div>
+    </div>
+    {{/unless}}
+    <div class="text">
+      {{{message.text}}}
+    </div>
+  </div>
+</div>
