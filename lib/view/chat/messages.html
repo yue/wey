@@ -13,14 +13,37 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.46668;
     word-wrap: break-word;
+    margin: 0;
+  }
+  .daymarker {
+    width: 100%;
+    height: 56px;
+    margin-bottom: -5px;
+    background: '#FFF';
+  }
+  .daymarker .label-wrapper {
+    text-align: center;
+  }
+  .daymarker .label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    padding: 20px 12px 0 12px;
+    background: white;
+  }
+  .daymarker hr {
+    border: 0;
+    border-top: 1px solid #e8e8e8;
+    margin-top: -10px;
   }
   .msg {
-    margin: 10px 0 0 5px;
+    margin: 10px 10px 0 10px;
     display: table;
     border-collapse: collapse;
   }
   .msg.folded {
-    margin: 0 0 0 5px;
+    margin-top: 0;
   }
   .msg > div {
     display: table-cell;
@@ -51,6 +74,14 @@
 <body>
 <div id="messages">
   {{#each channel.messages}}
+  {{#if this.isDayMarker}}
+  <div class="daymarker">
+    <div class="label-wrapper">
+      <div class="label">{{this.dayTime}}</div>
+    </div>
+    <hr class="line">
+  </div>
+  {{/if}}
   {{#if this.isFolded}}
   <div class="msg folded">
   {{else}}
@@ -84,6 +115,16 @@
   window.scrollTo(0, document.body.scrollHeight)
   // External API to add a new message.
   window.addMessage = function(message) {
+    if (message.isDayMarker) {
+      var marker = document.createElement('div')
+      marker.className = 'daymarker'
+      marker.innerHTML =
+        '<div class="label-wrapper">' +
+          '<div class="label">' + message.dayTime + '</div>' +
+        '</div>' +
+        '<hr class="line">'
+      document.getElementById('messages').appendChild(marker)
+    }
     var msg = document.createElement('div')
     if (message.isFolded)
       msg.className = 'msg folded'
