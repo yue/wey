@@ -15,19 +15,22 @@
     word-wrap: break-word;
   }
   .msg {
-    margin: 5px 5px 10px 5px;
+    margin: 10px 0 0 5px;
     display: table;
     border-collapse: collapse;
+  }
+  .msg.folded {
+    margin: 0 0 0 5px;
   }
   .msg > div {
     display: table-cell;
     vertical-align: top;
   }
-  .msg .avatar {
-    height: 36px;
-  }
-  .msg .avatar img {
+  .msg .avatar > * {
     margin-right: 10px;
+  }
+  .msg .avatar .dummy {
+    width: 36px;
   }
   .msg .sender {
     height: 15px;
@@ -48,13 +51,25 @@
 <body>
 <div id="messages">
   {{#each channel.messages}}
+  {{#if this.isFolded}}
+  <div class="msg folded">
+  {{else}}
   <div class="msg">
-    <div class="avatar"><img width="36" height="36" src="{{this.user.avatar}}"/></div>
+  {{/if}}
+    <div class="avatar">
+      {{#if this.isFolded}}
+      <div class="dummy"></div>
+      {{else}}
+      <img width="36" height="36" src="{{this.user.avatar}}"/>
+      {{/if}}
+    </div>
     <div class="content">
+      {{#unless this.isFolded}}
       <div class="sender">
         <div class="name">{{this.user.name}}</div>
         <div class="time">{{this.shortTime}}</div>
       </div>
+      {{/unless}}
       <div class="text">
         {{this.text}}
       </div>
