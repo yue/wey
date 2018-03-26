@@ -136,8 +136,6 @@
 {{/each}}
 </div>
 <script type="text/javascript" charset="utf-8">
-  // We are ready.
-  wey.ready()
   // Scroll to bottom.
   window.scrollTo(0, document.body.scrollHeight)
   // External API to add a new message.
@@ -151,6 +149,21 @@
       messages.appendChild(children[i])
     window.scrollTo(0, document.body.scrollHeight)
   }
+  // Helper to find the message.
+  // External API to delete message.
+  window.deleteMessage = function(id) {
+    messages.removeChild(document.getElementById(id))
+  }
+  // External API to modify message.
+  window.modifyMessage = function(id, text) {
+    const msg = document.getElementById(id)
+    if (msg) {
+      const content = msg.childNodes[3]
+      content.childNodes[content.childNodes.length - 2].innerHTML = text
+    }
+  }
+  // We are ready.
+  wey.ready()
 </script>
 </body>
 </html>

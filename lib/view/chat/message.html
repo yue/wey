@@ -7,9 +7,9 @@
 </div>
 {{/if}}
 {{#if message.isFolded}}
-<div class="msg folded">
+<div id="{{message.id}}" class="msg folded">
 {{else}}
-<div class="msg">
+<div id="{{message.id}}" class="msg">
 {{/if}}
   <div class="avatar">
     {{#if message.isFolded}}
