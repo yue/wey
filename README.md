@@ -72,9 +72,8 @@ be done via web APIs, i.e. by sending HTTPS requests, and it is really slow.
 
 To sign in and load channels, we have to call multiple web APIs. For example
 `rtm.start` to start RTM client, `team.info` to get team information,
-`auth.test` to get current user's ID, `users.list` to list team's users,
-`channels.list` and `groups.list` to list all public and private channels,
-`channels.history` to read past messages.
+`users.list` to list team's users, `channels.list` and `groups.list` to list
+all public and private channels, `channels.history` to read past messages.
 
 So from opening the app to finally reading the messages, there are more than 7
 slow HTTPS requests involved.

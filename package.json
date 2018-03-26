@@ -32,7 +32,7 @@
     "gui": "0.3.2",
     "mini-signals": "1.1.1",
     "string-replace-async": "1.2.1",
-    "@slack/client": "4.0.1"
+    "@slack/client": "4.1.0"
   },
   "devDependencies": {
     "yackage": "0.1.x"
