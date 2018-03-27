@@ -55,7 +55,7 @@ As workaround Wey can read Slack tokens from system keychain, which are written
 to by the official Slack desktop app. So to login with Wey, you need to login
 with the official Slack desktop app first.
 
-Wey can not silently read the system keychain, you will be explicitly prompted
+Wey does not silently read the system keychain, you will be explicitly prompted
 by the system when using Wey to read Slack tokens.
 
 Another way to login is to acquire a [token from Slack][token], which is a
