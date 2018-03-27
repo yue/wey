@@ -1,16 +1,24 @@
 # Wey
 
-Light-weight desktop Slack client written in Node.js.
+Light-weight desktop Slack client, written in Node.js with native UI.
 
 __Do not use this for work, you might miss important messages due to bugs and
 missing features.__
 
 ## Screenshots
 
-## Resources usage
+## Design principles
 
-Wey is designed to be fast, and using minimal resources is not its goal. But
-you shouldn't find it using too much resources or slowing down your computer.
+* Use native UI for almost everything.
+* Use HTML for rendering rich messages.
+* The HTML page should be static for best performance, the usage of JavaScript
+  in HTML page must be minimal.
+* Do not add external CSS or JavaScript libraries/frameworks to the HTML page,
+  hande-write everything.
+* Be careful when adding dependencies, only use third party modules that are
+  small and don't have tons of dependencies.
+
+## Resources usage
 
 Resouces used by Wey are based on following things:
 
@@ -28,17 +36,6 @@ significant CPU usage, and RAM ussage is usually under 100MB.
 * [Yue](https://github.com/yue/yue)
 * [Yode](https://github.com/yue/yode)
 
-## Design principles
-
-* Native UI should be used as much as possible, HTML view should only be used
-  for rendering messages.
-* The HTML page should be static for best performance, the usage of JavaScript
-  in HTML page must be minimal.
-* Do not add external CSS or JavaScript libraries/frameworks to the HTML page,
-  hande-write everything.
-* Be careful when adding dependencies, only use third party modules that are
-  small and don't have tons of dependencies.
-
 ## Contributions
 
 Please limit the size of pull requests under 300 lines, otherwise it would be
@@ -52,10 +49,16 @@ on this project.
 
 The Slack APIs are not really friendly for third party client apps, to implement
 OAuth we have to first develop a small web app, and then ask your team's admin
-to manually add the app to your team. We can not just let you login with your
-email and password like the official app.
+to manually add the app to your team.
 
-Currently to use Wey you have to acquire a [token from Slack][token], which is a
+As workaround Wey can read Slack tokens from system keychain, which are written
+to by the official Slack desktop app. So to login with Wey, you need to login
+with the official Slack desktop app first.
+
+Wey can not silently read the system keychain, you will be explicitly prompted
+by the system when using Wey to read Slack tokens.
+
+Another way to login is to acquire a [token from Slack][token], which is a
 deprecated feature and some teams have disabled it.
 
 ## Performance bottleneck
@@ -70,10 +73,13 @@ be done via web APIs, i.e. by sending HTTPS requests, and it is really slow.
 
 ### Intilization involves multiple web API calls
 
-To sign in and load channels, we have to call multiple web APIs. For example
+To sign in and load channels, we have to send multiple requests. For example
 `rtm.start` to start RTM client, `team.info` to get team information,
 `users.list` to list team's users, `channels.list` and `groups.list` to list
-all public and private channels, `channels.history` to read past messages.
+all public and private channels, `channels.history` to read messages history.
+
+Also the `channels.list` can not reliably give unread states of channels, we
+need to call `channels.info` API for every channel to get correct unread states.
 
 So from opening the app to finally reading the messages, there are more than 7
 slow HTTPS requests involved.
