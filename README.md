@@ -26,6 +26,7 @@ Resouces used by Wey are based on following things:
 * Native windows and widgets.
 * HTML view used for rendering messages.
 * JavaScript code for communicating with Slack.
+* Users and messages information in teams.
 
 Normally for multiple teams with heavy traffics, Wey should not have any
 significant CPU usage, and RAM ussage is usually under 100MB.
@@ -90,13 +91,13 @@ The messages history we pulled from Slack does not include full user
 information, it only has user IDs in it. So in order to render the messages we
 have to pull users list first.
 
-However certain Slack teams have more than 10k users, and it is impossible to
-download all users' information and cache them. Currently in Wey we only pull
-a few hundreds of users via `users.list` and cache them.
+However certain Slack teams have more than 20k users, and it is impossible to
+download all users' information and cache them. Because of this rendering
+messages becomes asynchronous work, whenever an uncached user ID is encountered,
+we have to wait and pull user's information before rendering the message.
 
-Because of this rendering messages becomes asynchronous work, whenever an
-uncached user ID is encountered, we have to wait and pull user's information
-before rendering the message.
+And for large teams we usually end up with caching more than 10k users, which
+uses a huge JavaScript object, and takes lots of memory.
 
 ### User information can only be pulled one by one
 
