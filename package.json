@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "install": "node scripts/install.js",
-    "build": "yackage build out --cache-dir yode --unpack '+(*.node|*.html)'"
+    "build": "yackage build out --cache-dir yode --unpack '+(*.node|*.html|*.png)'"
   },
   "engines": {
     "node": ">=8",
