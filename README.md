@@ -76,14 +76,21 @@ be done via web APIs, i.e. by sending HTTPS requests, and it is really slow.
 
 To sign in and load channels, we have to send multiple requests. For example
 `rtm.start` to start RTM client, `team.info` to get team information,
-`users.list` to list team's users, `channels.list` and `groups.list` to list
-all public and private channels, `channels.history` to read messages history.
+`users.list` to list team's users, `conversations.list` to list all public and
+private channels, `conversations.history` to read messages history.
 
-Also the `channels.list` can not reliably give unread states of channels, we
-need to call `channels.info` API for every channel to get correct unread states.
+Also the `conversations.list` can not reliably give unread states of channels,
+we need to call `conversations.info` API for every channel to get correct
+unread states.
 
 So from opening the app to finally reading the messages, there are more than 7
 slow HTTPS requests involved.
+
+### No easy way to get joined channels
+
+Currently to get all joined channels, we have to get all channels in a team
+first, and then filter them. For teams with large numbers of channels, we may
+have to send more than 10 HTTPS requests due to pagination in Slack APIs.
 
 ### Messages do not include user information
 
