@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "axios": "0.18.0",
+    "binary-search-bounds": "2.0.4",
     "download-yue": "2.x",
     "file-url": "2.0.2",
     "fs-extra": "5.0.0",
