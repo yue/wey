@@ -1,22 +1,24 @@
 # Wey
 
-Light-weight desktop Slack client, written in Node.js with native UI.
+Fast desktop Slack client, written in Node.js with native UI.
 
 __Do not use this for work, you might miss important messages due to bugs and
 missing features.__
 
 ## Screenshots
 
-## Design principles
+## Releases
 
-* Use native UI for almost everything.
-* Use HTML for rendering rich messages.
-* The HTML page should be static for best performance, the usage of JavaScript
-  in HTML page must be minimal.
-* Do not add external CSS or JavaScript libraries/frameworks to the HTML page,
-  hande-write everything.
-* Be careful when adding dependencies, only use third party modules that are
-  small and don't have tons of dependencies.
+To find latest releases for different platforms, go to the [Releases][releases]
+page on GitHub.
+
+For hackers, you can also `npm install -g wey`.
+
+## Technical stack
+
+* [Node.js](https://nodejs.org)
+* [Yue](https://github.com/yue/yue)
+* [Yode](https://github.com/yue/yode)
 
 ## Resources usage
 
@@ -26,16 +28,75 @@ Resouces used by Wey are based on following things:
 * Native windows and widgets.
 * HTML view used for rendering messages.
 * JavaScript code for communicating with Slack.
-* Users and messages information in teams.
+* Cached Users and messages information in teams.
 
 Normally for multiple teams with heavy traffics, Wey should not have any
-significant CPU usage, and RAM ussage is usually under 100MB.
+significant CPU usage, and RAM ussage is usually under 100MB. However if you
+have a team with more than 10k users in it, the memory usage may increase a lot.
 
-## Technical stack
+## Design principles
 
-* [Node.js](https://nodejs.org)
-* [Yue](https://github.com/yue/yue)
-* [Yode](https://github.com/yue/yode)
+Wey is developed with following principles, the ultimate goal is to provide a
+fast and powerful chat app.
+
+### Use native UI for almost everything
+
+Most parts of Wey should be created with native UI widgets from Yue library,
+when there is need for custom UI, draw it manually.
+
+### HTML is our friend
+
+Webview is a great tool as long as we use it wisely. For rendering the rich
+messages of Slack, HTML is the best tool.
+
+The HTML pages showed in Wey should be static for best performance, the usage
+of JavaScript in the pages must be minimal. We should not use any external CSS
+or JavaScript library/framework, every style and animation must be hand written.
+
+### Minimal dependencies
+
+Be careful when adding dependencies, only use third party modules that are small
+and without tons of dependencies.
+
+### Hide details of chat service providers
+
+While Wey currently only supports Slack, it is on roadmap to add support for
+more services, and in future we will support plugins to add arbitrary services.
+
+To achieve this we must ensure the views and controllers must only operate on
+the public interfaces of models, all internal implementations must be hidden
+from outside.
+
+### Separated views
+
+Wey supports multiple windows with different types for reading messages, so the
+views should act only as users of models, and should not manage the models.
+
+As benefit creating views in Wey is very fast, opening a new window is almost
+as fast as showing a hidden window. Users can close all windows and run Wey in
+background, while still be able to open a new window quicly.
+
+### Correctly unload things
+
+While JavaScript has garbage collections, it is still very easy to cause memory
+leaks when careless referencing objects together. Views in Wey are reloaded
+frequently (for example switching accounts and closing windows), so it is
+important to ensure everything event subscription is detached when unloading
+a view.
+
+## Resources usage
+
+Resouces used by Wey are based on following things:
+
+* The Node.js runtime.
+* Native windows and widgets.
+* HTML view used for rendering messages.
+* JavaScript code for communicating with Slack.
+* Cached Users and messages information in teams.
+
+Normally for multiple teams with heavy traffics, Wey should not have any
+significant CPU usage, and RAM ussage is usually under 100MB. However if you
+have a team with more than 10k users in it, the memory usage may increase a lot.
 
 ## Contributions
 
@@ -44,7 +105,7 @@ rather hard to review the code. If you have a big feature to add, please
 consider splitting it into multiple pull requests.
 
 It is also encouraged to fork this project or even develop commercial apps based
-on this project.
+on this project, as long as you follow the GPLv3 license.
 
 ## Login limitations
 
@@ -127,4 +188,5 @@ channel messages involving bots.
 The main source code under `lib/` are published under GPLv3, other things are
 published under public domain.
 
+[releases]: https://github.com/yue/wey/releases
 [token]: https://api.slack.com/custom-integrations/legacy-tokens
