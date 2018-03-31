@@ -6,6 +6,14 @@
   <hr class="line">
 </div>
 {{/if}}
+{{#isFirstUnread channel message}}
+<div class="unread-marker">
+  <div class="label-wrapper">
+    <div class="label">new messages</div>
+  </div>
+  <hr class="line">
+</div>
+{{/isFirstUnread}}
 {{#if message.isFolded}}
 <div id="{{message.id}}" class="msg folded">
 {{else}}

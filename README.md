@@ -183,6 +183,16 @@ certain bot users. As a result even for small teams that we can cache all the
 users, we still have to spend time fetching user information when rendering
 channel messages involving bots.
 
+## Quirks
+
+I have met some quirks when using Slack APIs, any help would be appreciated.
+
+* Slack API sometimes does not return `unread_count` or `latest` for channels,
+  so unread state in Wey is not reliable.
+* To mark a channel as read we need to send last read timestamp, but it is
+  really to determine which timestamp to send. Marking certain bot messages as
+  read would make Slack server think the channel is unread.
+
 ## License
 
 The main source code under `lib/` are published under GPLv3, other things are

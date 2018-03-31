@@ -25,7 +25,6 @@
     width: 100%;
     height: 56px;
     margin-bottom: -5px;
-    background: '#FFF';
   }
   .daymarker .label-wrapper {
     text-align: center;
@@ -41,6 +40,27 @@
   .daymarker hr {
     border: 0;
     border-top: 1px solid #e8e8e8;
+    margin-top: -10px;
+  }
+
+  .unread-marker {
+    width: 100%;
+    height: 22px;
+  }
+  .unread-marker .label-wrapper {
+    text-align: center;
+  }
+  .unread-marker .label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 12px 0 12px;
+    color: #D72B3F;
+    background: white;
+  }
+  .unread-marker hr {
+    border: 0;
+    border-top: 1px solid #D72B3F;
     margin-top: -10px;
   }
 
@@ -146,7 +166,7 @@
 <body>
 <div id="messages">
 {{#each channel.messages}}
-  {{> messagePartial message=this}}
+  {{> messagePartial channel=../channel message=this}}
 {{/each}}
 </div>
 <script type="text/javascript" charset="utf-8">
