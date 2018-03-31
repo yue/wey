@@ -84,20 +84,6 @@ frequently (for example switching accounts and closing windows), so it is
 important to ensure everything event subscription is detached when unloading
 a view.
 
-## Resources usage
-
-Resouces used by Wey are based on following things:
-
-* The Node.js runtime.
-* Native windows and widgets.
-* HTML view used for rendering messages.
-* JavaScript code for communicating with Slack.
-* Cached Users and messages information in teams.
-
-Normally for multiple teams with heavy traffics, Wey should not have any
-significant CPU usage, and RAM ussage is usually under 100MB. However if you
-have a team with more than 10k users in it, the memory usage may increase a lot.
-
 ## Contributions
 
 Please limit the size of pull requests under 300 lines, otherwise it would be
@@ -125,7 +111,8 @@ deprecated feature and some teams have disabled it.
 
 ## Performance bottleneck
 
-In Wey most time are spent on networking, and performance is usually limited by
+In Wey most time are spent on networking, especially on startup when fetching
+channels information from Slack, and performance is usually limited by
 Slack's APIs.
 
 ### Most operations are done via web API

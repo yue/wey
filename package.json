@@ -1,7 +1,7 @@
 {
   "name": "wey",
   "productName": "Wey",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/main.js",
   "description": "Light-weight desktop Slack client",
   "bin": {
