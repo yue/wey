@@ -147,6 +147,17 @@ unread states.
 So from opening the app to finally reading the messages, there are more than 7
 slow HTTPS requests involved.
 
+### Direct messages do not have unread information
+
+The `im.list` API returns all direct messages in the past, including really old
+ones, and it does not include any hint of its read state. So in order to find
+out the unread direct messages, we have to pull the list of all direct messages,
+and then request their information one by one. This could end up with hundreds
+of HTTPs requests.
+
+Currently for certain teams direct messages would take more than a minute to
+load.
+
 ### No easy way to get joined channels
 
 Currently to get all joined channels, we have to get all channels in a team
@@ -192,6 +203,7 @@ I have met some quirks when using Slack APIs, any help would be appreciated.
 * To mark a channel as read we need to send last read timestamp, but it is
   really to determine which timestamp to send. Marking certain bot messages as
   read would make Slack server think the channel is unread.
+* Converations API does not return information for `im`s.
 
 ## License
 
