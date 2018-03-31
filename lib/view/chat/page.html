@@ -43,14 +43,14 @@
     margin-top: -10px;
   }
 
-  .unread-marker {
+  #unread-marker {
     width: 100%;
     height: 22px;
   }
-  .unread-marker .label-wrapper {
+  #unread-marker .label-wrapper {
     text-align: center;
   }
-  .unread-marker .label {
+  #unread-marker .label {
     display: inline-block;
     font-size: 12px;
     font-weight: bold;
@@ -58,7 +58,7 @@
     color: #D72B3F;
     background: white;
   }
-  .unread-marker hr {
+  #unread-marker hr {
     border: 0;
     border-top: 1px solid #D72B3F;
     margin-top: -10px;
@@ -174,13 +174,20 @@
   window.scrollTo(0, document.body.scrollHeight)
   // External API to add a new message.
   var messages = document.getElementById('messages')
-  window.addMessage = function(html) {
+  window.addMessage = function(html, clearMark) {
+    if (clearMark) {
+      var marker = document.getElementById('unread-marker')
+      if (marker)
+        messages.removeChild(marker)
+    }
     // Note: Don't use DOMParser, it has problems with applying CSS styles.
     var wrapper = document.createElement('div')
     wrapper.innerHTML = html
     var children = wrapper.childNodes
     for (var i = 0; i < children.length; i++)
       messages.appendChild(children[i])
+    // Scroll to bottom.
+    // TODO Scrool to half screen with unread messages.
     window.scrollTo(0, document.body.scrollHeight)
   }
   // Helper to find the message.
