@@ -190,7 +190,6 @@ I have met some quirks when using Slack APIs, any help would be appreciated.
 * To mark a channel as read we need to send last read timestamp, but it is
   really to determine which timestamp to send. Marking certain bot messages as
   read would make Slack server think the channel is unread.
-* Converations API does not return information for `im`s.
 
 ## License
 
