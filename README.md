@@ -134,15 +134,6 @@ we have to wait and pull user's information before rendering the message.
 And for large teams we usually end up with caching more than 10k users, which
 uses a huge JavaScript object, and takes lots of memory.
 
-### User information can only be pulled one by one
-
-Slack does not provide an API to pull information of groups of users. You can
-either try to pull all users via `users.list`, or pull users one by one via
-`user.info`.
-
-For a large team which it is impractical to cache all users, we may end up
-sending tens of HTTPS requests for rendering a channel's messages.
-
 ### Some bots are not returned in `users.list`
 
 While the `users.list` should also return bot users, it somehow does not return
