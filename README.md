@@ -93,22 +93,6 @@ consider splitting it into multiple pull requests.
 It is also encouraged to fork this project or even develop commercial apps based
 on this project, as long as you follow the GPLv3 license.
 
-## Login limitations
-
-The Slack APIs are not really friendly for third party client apps, to implement
-OAuth we have to first develop a small web app, and then ask your team's admin
-to manually add the app to your team.
-
-As workaround Wey can read Slack tokens from system keychain, which are written
-to by the official Slack desktop app. So to login with Wey, you need to login
-with the official Slack desktop app first.
-
-Wey does not silently read the system keychain, you will be explicitly prompted
-by the system when using Wey to read Slack tokens.
-
-Another way to login is to acquire a [token from Slack][token], which is a
-deprecated feature and some teams have disabled it.
-
 ## Performance bottleneck
 
 In Wey most time are spent on networking, especially on startup when fetching
