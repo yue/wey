@@ -120,37 +120,6 @@ Slack's APIs.
 In Slack while there is Real Time Messaging API, most common operations can only
 be done via web APIs, i.e. by sending HTTPS requests, and it is really slow.
 
-### Intilization involves multiple web API calls
-
-To sign in and load channels, we have to send multiple requests. For example
-`rtm.start` to start RTM client, `team.info` to get team information,
-`users.list` to list team's users, `conversations.list` to list all public and
-private channels, `conversations.history` to read messages history.
-
-Also the `conversations.list` can not reliably give unread states of channels,
-we need to call `conversations.info` API for every channel to get correct
-unread states.
-
-So from opening the app to finally reading the messages, there are more than 7
-slow HTTPS requests involved.
-
-### Direct messages do not have unread information
-
-The `im.list` API returns all direct messages in the past, including really old
-ones, and it does not include any hint of its read state. So in order to find
-out the unread direct messages, we have to pull the list of all direct messages,
-and then request their information one by one. This could end up with hundreds
-of HTTPs requests.
-
-Currently for certain teams direct messages would take more than a minute to
-load.
-
-### No easy way to get joined channels
-
-Currently to get all joined channels, we have to get all channels in a team
-first, and then filter them. For teams with large numbers of channels, we may
-have to send more than 10 HTTPS requests due to pagination in Slack APIs.
-
 ### Messages do not include user information
 
 The messages history we pulled from Slack does not include full user
@@ -185,8 +154,6 @@ channel messages involving bots.
 
 I have met some quirks when using Slack APIs, any help would be appreciated.
 
-* Slack API sometimes does not return `unread_count` or `latest` for channels,
-  so unread state in Wey is not reliable.
 * To mark a channel as read we need to send last read timestamp, but it is
   really to determine which timestamp to send. Marking certain bot messages as
   read would make Slack server think the channel is unread.
