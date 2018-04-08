@@ -21,8 +21,9 @@ For hackers, you can also `npm install -g wey`.
 
 ## Technical stack
 
-* [Yue](https://github.com/yue/yue)
-* [Yode](https://github.com/yue/yode)
+* [Yue](https://github.com/yue/yue) - Cross-platform native UI library
+* [Yode](https://github.com/yue/yode) - Node.js fork with GUI message loop
+* [Yackage](https://github.com/yue/yackage) - Package Node.js project with Yode
 * [Node.js](https://nodejs.org)
 
 ## Resources usage
