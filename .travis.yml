@@ -12,6 +12,11 @@ os:
 osx_image: xcode8.3
 dist: trusty
 
+addons:
+  apt:
+    packages:
+      - libsecret-1-dev
+
 before_script:
   - export VERSION=$(git describe --always --tags)
 
