@@ -1,0 +1,35 @@
+git:
+  depth: 10
+notifications:
+  email: false
+
+language: node_js
+node_js:
+  - 8.9.4
+os:
+  - osx
+  - linux
+osx_image: xcode8.3
+dist: trusty
+
+before_script:
+  - export VERSION=$(git describe --always --tags)
+
+script:
+  - npm install
+  - npm run dist
+
+deploy:
+  provider: releases
+  api_key:
+    secure: TI6GiwFHRIt5Vg7ko04YsdkS2J17+8H5dmGAE71cywSwD7V93UaYveTLVQ4n+skC40wViWuW+sroEOosc6jKfXXdkWIfxTXcQx2hrf+HOv+jjkmjJd3qACogmF6sXDrm0xD7fLYvljmH0OTQAZEgUfl1SL1PZcKqRLq8sys177yVDeSgAxzwZW5lydxLln1qfkjh7wXBUP7qZBX4AoTtmS5m1DskF8N/W5ZgnqdUReQxiG4HzMyK1yJZUBjVCCvK1ZcnHxsaVPStQyMEB2VrMCAlfifusW9Tzx+r3kvBF1o2Cj5QJp9oyWinNkiJu/LbL2WudF8o6tjN3u9fmyWs6VUadGQKeQH5wIw+n8neCcAkbJ+UWCtLjFfWQVSGtyRXlnI4v7TW1uo94lcKLpz3ymYhKsRmn+HlgBDtX6T0AGBPGrR7uy+SYaAM5yiaepjbBRYVXCmv9nqU2zRHelv/IpXvpVhjMU4k98NMsGvYBpBqRPIVbVsuDSh7mp4AYn2A5F7Q9OCt8Z/nxwKbEPUp7vl8zflZtVCOXkyPlGZeSBwMppAJzIVEj6NvEB4m82gcveaYmXO8Zg+yftjWD6+3fl1RZmnK7yxJaWwu/BUr8isM8MyVacPcKyxFc4X4hSi5KYrqgIli5mUtOCongZmvGx2UzBlsLTA3/2XXunmKIG4=
+  file_glob: true
+  file: *.zip
+  skip_cleanup: true
+  overwrite: true
+  draft: true
+  tag_name: ${VERSION}
+  name: Wey ${VERSION}
+  body: (placeholder)
+  on:
+    tags: true
