@@ -14,7 +14,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "install": "node scripts/install.js",
-    "build": "yackage build out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\""
+    "build": "yackage build out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\"",
+    "dist": "yackage dist out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\""
   },
   "engines": {
     "node": ">=8",
@@ -43,6 +44,6 @@
     "@slack/client": "4.1.0"
   },
   "devDependencies": {
-    "yackage": "0.2.1"
+    "yackage": "0.2.2"
   }
 }
