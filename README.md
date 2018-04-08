@@ -8,6 +8,10 @@ missing features.__
 
 ## Screenshots
 
+|  macOS            |    Linux          |  Windows          |
+| ----------------- | ----------------- | ----------------- |
+| ![][mac-screen]   | ![][linux-screen] | ![][win-screen]   |
+
 ## Releases
 
 To find latest releases for different platforms, go to the [Releases][releases]
@@ -141,3 +145,6 @@ published under public domain.
 
 [releases]: https://github.com/yue/wey/releases
 [token]: https://api.slack.com/custom-integrations/legacy-tokens
+[mac-screen]: https://user-images.githubusercontent.com/639601/38463114-178afd9e-3b2e-11e8-9650-09b5d981523b.png
+[linux-screen]: https://user-images.githubusercontent.com/639601/38463115-17b8c7e2-3b2e-11e8-8f75-5a76f87686f3.png
+[win-screen]: https://user-images.githubusercontent.com/639601/38463105-97644cc4-3b2d-11e8-97a1-6cdb451ae3a8.png
