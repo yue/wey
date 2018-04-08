@@ -1,6 +1,7 @@
 # Wey
 
-Fast desktop Slack client, written in Node.js with native UI.
+Fast open source Slack desktop app, written in Node.js with native UI powered
+by [the Yue library](https://github.com/yue/yue).
 
 __Do not use this for work, you might miss important messages due to bugs and
 missing features.__
@@ -16,9 +17,9 @@ For hackers, you can also `npm install -g wey`.
 
 ## Technical stack
 
-* [Node.js](https://nodejs.org)
 * [Yue](https://github.com/yue/yue)
 * [Yode](https://github.com/yue/yode)
+* [Node.js](https://nodejs.org)
 
 ## Resources usage
 

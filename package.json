@@ -43,6 +43,6 @@
     "@slack/client": "4.1.0"
   },
   "devDependencies": {
-    "yackage": "0.1.4"
+    "yackage": "0.2.0"
   }
 }
