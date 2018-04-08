@@ -1,8 +1,8 @@
 {
   "name": "wey",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": "lib/main.js",
-  "description": "Light-weight desktop Slack client",
+  "description": "Fast open source Slack desktop app",
   "build": {
     "appId": "org.yue.wey",
     "productName": "Wey",
@@ -43,6 +43,6 @@
     "@slack/client": "4.1.0"
   },
   "devDependencies": {
-    "yackage": "0.2.0"
+    "yackage": "0.2.1"
   }
 }
