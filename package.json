@@ -36,7 +36,7 @@
     "download-yue": "2.x",
     "file-url": "2.0.2",
     "fs-extra": "5.0.0",
-    "gui": "0.4.0",
+    "gui": "0.4.1",
     "opn": "5.3.0",
     "mini-signals": "1.1.1",
     "keytar": "4.2.1",
