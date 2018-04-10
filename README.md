@@ -80,7 +80,7 @@ views should act only as users of models, and should not manage the models.
 
 As benefit creating views in Wey is very fast, opening a new window is almost
 as fast as showing a hidden window. Users can close all windows and run Wey in
-background, while still be able to open a new window quicly.
+background, while still be able to open a new window quickly.
 
 ### Correctly unload things
 
