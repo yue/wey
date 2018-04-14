@@ -29,7 +29,7 @@ supported for running from source code.)
 
 ## Resources usage
 
-Resouces used by Wey are based on following things:
+Resources used by Wey are based on following things:
 
 * The Node.js runtime.
 * Native windows and widgets.
@@ -38,7 +38,7 @@ Resouces used by Wey are based on following things:
 * Cached Users and messages information in teams.
 
 Normally for multiple teams with heavy traffics, Wey should not have any
-significant CPU usage, and RAM ussage is usually under 100MB. However if you
+significant CPU usage, and RAM usage is usually under 100MB. However if you
 have a team with more than 10k users in it, the memory usage may increase a lot.
 
 ## Design principles
