@@ -17,7 +17,8 @@ missing features.__
 To find latest releases for different platforms, go to the [Releases][releases]
 page on GitHub.
 
-For hackers, you can also `npm install -g wey`.
+For hackers, you can also `npm install -g wey`. (Currently only Node.js 8.x is
+supported for running from source code.)
 
 ## Technical stack
 
