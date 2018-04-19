@@ -174,8 +174,8 @@
   window.scrollTo(0, document.body.scrollHeight)
   // External API to add a new message.
   var messages = document.getElementById('messages')
-  window.addMessage = function(html, clearMark) {
-    if (clearMark) {
+  window.addMessage = function(html, firstUnread) {
+    if (firstUnread) {
       var marker = document.getElementById('unread-marker')
       if (marker)
         messages.removeChild(marker)
@@ -186,9 +186,10 @@
     var children = wrapper.childNodes
     for (var i = 0; i < children.length; i++)
       messages.appendChild(children[i])
-    // Scroll to bottom.
-    // TODO Scrool to half screen with unread messages.
-    window.scrollTo(0, document.body.scrollHeight)
+    // Scroll to bottom when it is the first unread message or when the channel
+    // is focused.
+    if (firstUnread || document.hasFocus())
+      window.scrollTo(0, document.body.scrollHeight)
   }
   // Helper to find the message.
   // External API to delete message.
