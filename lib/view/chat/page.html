@@ -210,6 +210,39 @@
       content.childNodes[content.childNodes.length - 2].innerHTML = text
     }
   }
+  // Remember which element is on top.
+  var topElement = null
+  var scrollOffset = 0
+  var ignoreNextScroll = false
+  window.onscroll = function() {
+    if (ignoreNextScroll) {
+      ignoreNextScroll = false
+      return
+    }
+    topElement = null
+    scrollOffset = 0
+    if (window.scrollY >= document.body.scrollHeight)
+      return
+    var messages = document.getElementsByClassName('msg')
+    if (messages.length === 0)
+      return
+    // Search backwards.
+    for (var i = messages.length - 1; i >= 0;  --i) {
+      var rect = messages[i].getBoundingClientRect()
+      if (rect.top < 0)
+        break
+      topElement = messages[i]
+      scrollOffset = rect.top
+    }
+  }
+  // Make sure the view is always scrolled at current message.
+  window.onresize = function() {
+    ignoreNextScroll = true
+    if (topElement)
+      window.scrollTo(0, topElement.getBoundingClientRect().top + window.pageYOffset - scrollOffset)
+    else
+      window.scrollTo(0, document.body.scrollHeight)
+  }
   // We are ready.
   wey.ready()
 </script>
