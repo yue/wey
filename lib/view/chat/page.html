@@ -116,6 +116,11 @@
     display: block;
     height: 8px;
   }
+  .text .edited-label {
+    color: #A0A0A2;
+    font-size: 13px;
+    white-space: nowrap;
+  }
   .text .at, .text a, .text a:link, .text a:visited {
     color: #0576b9;
     text-decoration: none;
@@ -204,9 +209,10 @@
   }
   // External API to modify message.
   window.modifyMessage = function(id, text) {
-    const msg = document.getElementById(id)
+    var msg = document.getElementById(id)
     if (msg) {
-      const content = msg.childNodes[3]
+      text = text + ' <span class="edited-label">(edited)</span>'
+      var content = msg.childNodes[3]
       content.childNodes[content.childNodes.length - 2].innerHTML = text
     }
   }

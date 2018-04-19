@@ -35,6 +35,7 @@
     {{/unless}}
     <div class="text">
       {{{message.text}}}
+      {{#if message.isEdited}}<span class="edited-label">(edited)</span>{{/if}}
     </div>
   </div>
 </div>
