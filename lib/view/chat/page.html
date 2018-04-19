@@ -170,8 +170,14 @@
 {{/each}}
 </div>
 <script type="text/javascript" charset="utf-8">
-  // Scroll to bottom.
-  window.scrollTo(0, document.body.scrollHeight)
+  // Scroll to the unread marker, or bottom if not found.
+  var marker = document.getElementById('unread-marker')
+  if (marker) {
+    var rect = marker.getBoundingClientRect()
+    window.scrollTo(0, rect.top + window.pageYOffset - (window.innerHeight / 2))
+  } else {
+    window.scrollTo(0, document.body.scrollHeight)
+  }
   // External API to add a new message.
   var messages = document.getElementById('messages')
   window.addMessage = function(html, firstUnread) {
