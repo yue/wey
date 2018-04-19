@@ -17,6 +17,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  a, a:link, a:visited {
+    color: #0576b9;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
   #messages {
     margin-bottom: 10px;
   }
@@ -121,16 +129,13 @@
     font-size: 13px;
     white-space: nowrap;
   }
-  .text .at, .text a, .text a:link, .text a:visited {
+  .text .at {
     color: #0576b9;
     text-decoration: none;
   }
   .text .at, .text .broadcast {
     padding: 0 2px 1px 2px;
     border-radius: 3px;
-  }
-  .text a:hover {
-    text-decoration: underline;
   }
   .text .at {
     background: #EAF5FC;
@@ -165,6 +170,39 @@
     border: 1px solid #E1E1E8;
     border-radius: 3px;
     -webkit-border-radius: 3px;
+  }
+
+  .attachment {
+    margin: 4px 0 4px 0;
+    display: table;
+    border-collapse: collapse;
+  }
+  .attachment > div {
+    display: table-cell;
+    vertical-align: top;
+  }
+  .attachment .border {
+    width: 4px;
+    border-radius: 8px;
+  }
+  .attachment .content {
+    padding: 0 12px;
+  }
+  .attachment .sender {
+    margin: 4px 0 4px 0;
+  }
+  .attachment .sender > * {
+    vertical-align: middle;
+  }
+  .attachment .sender img {
+    border-radius: 2px;
+  }
+  .attachment .sender a {
+    color: #717274;
+  }
+  .attachment .title {
+    color: #005E99;
+    font-weight: bold;
   }
 </style>
 </head>

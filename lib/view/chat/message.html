@@ -37,5 +37,26 @@
       {{{message.text}}}
       {{#if message.isEdited}}<span class="edited-label">(edited)</span>{{/if}}
     </div>
+    {{#each message.attachments}}
+    <div class="attachment">
+      <div class="border" style="background-color: {{color}}"></div>
+      <div class="content">
+        {{#if author}}
+        <div class="sender">
+          <img width="16" height="16" src="{{authorIcon}}"/>
+          <a href="{{authorLink}}">{{author}}</a>
+        </div>
+        {{/if}}
+        {{#if title}}
+        <div class="title"><a href="{{titleLink}}">{{title}}</a></div>
+        {{/if}}
+        {{#if text}}
+        <div class="text">
+          {{{text}}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
   </div>
 </div>
