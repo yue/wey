@@ -287,10 +287,9 @@
       var newMsg
       var element = HTMLToDOM(html)
       for (var i = 0; i < element.length; i++) {
-        if (element[i].classList.contains('msg')) {
-          newMsg = element[i]
+        newMsg = element[i]
+        if (newMsg.classList && newMsg.classList.contains('msg'))
           break
-        }
       }
       msg.innerHTML = newMsg.innerHTML
     }
