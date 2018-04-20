@@ -252,6 +252,13 @@
   } else {
     window.scrollTo(0, document.body.scrollHeight)
   }
+  // Helper to convert HTML to DOM.
+  function HTMLToDOM(html) {
+    // Note: Don't use DOMParser, it has problems with applying CSS styles.
+    var wrapper = document.createElement('div')
+    wrapper.innerHTML = html
+    return wrapper.childNodes
+  }
   // External API to add a new message.
   var messages = document.getElementById('messages')
   window.addMessage = function(html, firstUnread) {
@@ -260,10 +267,7 @@
       if (marker)
         messages.removeChild(marker)
     }
-    // Note: Don't use DOMParser, it has problems with applying CSS styles.
-    var wrapper = document.createElement('div')
-    wrapper.innerHTML = html
-    var children = wrapper.childNodes
+    var children = HTMLToDOM(html)
     for (var i = 0; i < children.length; i++)
       messages.appendChild(children[i])
     // Scroll to bottom when it is the first unread message or when the channel
@@ -271,18 +275,24 @@
     if (firstUnread || document.hasFocus())
       window.scrollTo(0, document.body.scrollHeight)
   }
-  // Helper to find the message.
   // External API to delete message.
   window.deleteMessage = function(id) {
     messages.removeChild(document.getElementById(id))
   }
   // External API to modify message.
-  window.modifyMessage = function(id, text) {
+  window.modifyMessage = function(id, html) {
     var msg = document.getElementById(id)
     if (msg) {
-      text = text + ' <span class="edited-label">(edited)</span>'
-      var content = msg.childNodes[3]
-      content.childNodes[content.childNodes.length - 2].innerHTML = text
+      // Ignore dayMarker and unreadMarker, only find the message part.
+      var newMsg
+      var element = HTMLToDOM(html)
+      for (var i = 0; i < element.length; i++) {
+        if (element[i].classList.contains('msg')) {
+          newMsg = element[i]
+          break
+        }
+      }
+      msg.innerHTML = newMsg.innerHTML
     }
   }
   // Helper function to find parent element.
