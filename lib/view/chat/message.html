@@ -60,6 +60,11 @@
           {{{text}}}
         </div>
         {{/if}}
+        {{#if image}}
+        <div class="image">
+          <a href="{{image}}"><img width="{{imageWidth}}" height="{{imageHeight}}" src="{{image}}"/></a>
+        </div>
+        {{/if}}
       </div>
     </div>
     {{/each}}
