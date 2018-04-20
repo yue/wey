@@ -68,5 +68,12 @@
       </div>
     </div>
     {{/each}}
+    {{#if message.reactions}}
+    <div class="reactions">
+    {{#each message.reactions}}
+    <button>{{{content}}}<span class="count">{{count}}</span></button>
+    {{/each}}
+    </div>
+    {{/if}}
   </div>
 </div>
