@@ -258,6 +258,32 @@
       content.childNodes[content.childNodes.length - 2].innerHTML = text
     }
   }
+  // Helper function to find parent element.
+  function findParent(tagName, target) {
+    var loops = 0
+    while (target && ++loops < 4) {
+      if (target.tagName.toLowerCase() === tagName)
+        return target
+      target = target.parentNode
+    }
+    return null
+  }
+  // Open links in actual browsers.
+  window.onclick = function(event) {
+    var target = findParent('a', event.target)
+    if (target && target.href !== '#' && !target.onclick) {
+      wey.openLink(target.href)
+      return false
+    }
+  }
+  // Custom menu for links.
+  window.oncontextmenu = function(event) {
+    var target = findParent('a', event.target)
+    if (target && target.href !== '#' && !target.oncontextmenu) {
+      wey.openLinkContextMenu(target.href)
+      return false
+    }
+  }
   // Remember which element is on top.
   var topElement = null
   var scrollOffset = 0
