@@ -38,8 +38,13 @@
       {{#if message.isEdited}}<span class="edited-label">(edited)</span>{{/if}}
     </div>
     {{#each message.attachments}}
+    {{#if preText}}
+    <div class="text">
+      {{{preText}}}
+    </div>
+    {{/if}}
     <div class="attachment">
-      <div class="border" style="background-color: {{color}}"></div>
+      <div class="border" style="background-color: {{color}}"><div style="width: 4px"></div></div>
       <div class="content">
         {{#if author}}
         <div class="sender">
