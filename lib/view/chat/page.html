@@ -282,6 +282,18 @@
   window.deleteMessage = function(id) {
     messages.removeChild(document.getElementById(id))
   }
+  // Which element is on top.
+  var topElement = null
+  var scrollOffset = 0
+  var ignoreNextScroll = false
+  // Helper to scroll to previous top element.
+  function scrollToPreivousTopElement() {
+    ignoreNextScroll = true
+    if (topElement)
+      window.scrollTo(0, topElement.getBoundingClientRect().top + window.pageYOffset - scrollOffset)
+    else
+      window.scrollTo(0, document.body.scrollHeight)
+  }
   // External API to modify message.
   window.modifyMessage = function(id, html) {
     var msg = document.getElementById(id)
@@ -295,6 +307,7 @@
           break
       }
       msg.innerHTML = newMsg.innerHTML
+      scrollToPreivousTopElement()
     }
   }
   // Helper function to find parent element.
@@ -323,10 +336,7 @@
       return false
     }
   }
-  // Remember which element is on top.
-  var topElement = null
-  var scrollOffset = 0
-  var ignoreNextScroll = false
+  // Update current top element.
   window.onscroll = function() {
     if (ignoreNextScroll) {
       ignoreNextScroll = false
@@ -334,7 +344,7 @@
     }
     topElement = null
     scrollOffset = 0
-    if (window.scrollY >= document.body.scrollHeight)
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight)
       return
     var messages = document.getElementsByClassName('msg')
     if (messages.length === 0)
@@ -349,13 +359,7 @@
     }
   }
   // Make sure the view is always scrolled at current message.
-  window.onresize = function() {
-    ignoreNextScroll = true
-    if (topElement)
-      window.scrollTo(0, topElement.getBoundingClientRect().top + window.pageYOffset - scrollOffset)
-    else
-      window.scrollTo(0, document.body.scrollHeight)
-  }
+  window.onresize = scrollToPreivousTopElement
   // We are ready.
   wey.ready()
 </script>
