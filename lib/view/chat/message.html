@@ -30,7 +30,9 @@
     {{#unless message.isFolded}}
     <div class="sender">
       <div class="name">{{message.user.name}}</div>
-      {{#if message.user.statusEmoji}}<div class="status-emoji">{{{ message.user.statusEmoji }}}</div>{{/if}}
+      {{#if message.user.statusEmoji}}
+        {{{message.user.statusEmoji}}}
+      {{/if}}
       <div class="time">{{message.shortTime}}</div>
     </div>
     {{/unless}}
