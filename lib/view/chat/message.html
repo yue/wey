@@ -29,7 +29,7 @@
   <div class="content">
     {{#unless message.isFolded}}
     <div class="sender">
-      <div class="name">{{message.user.name}}</div>
+      <div class="name" style="color: #{{message.user.color}}">{{message.user.name}}</div>
       <div class="time">{{message.shortTime}}</div>
     </div>
     {{/unless}}
