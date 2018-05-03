@@ -79,7 +79,7 @@
     </div>
     {{/if}}
     {{#if message.isThreadParent}}
-    <div onclick="wey.openThread('{{channel.id}}', '{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
+    <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
       {{#each message.replyUsers}}
       <img width="24" height="24" src="{{avatar}}"/>
       {{/each}}
