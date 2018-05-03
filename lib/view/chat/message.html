@@ -78,5 +78,14 @@
     {{/each}}
     </div>
     {{/if}}
+    {{#if message.isThreadParent}}
+    <div onclick="wey.openThread('{{channel.id}}', '{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
+      {{#each message.replyUsers}}
+      <img width="24" height="24" src="{{avatar}}"/>
+      {{/each}}
+      <a href="#" onclick="return false">{{message.replyCount}} replies</a>
+      <span class="description">View thread</span>
+    </div></div>
+    {{/if}}
   </div>
 </div>

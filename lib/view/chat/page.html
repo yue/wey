@@ -245,6 +245,39 @@
     color: #717274;
     padding: 0 1px 0 3px;
   }
+
+  .replies-wrapper {
+    height: 32px;
+    max-width: 600px;
+    margin-left: -4px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .replies-wrapper:hover {
+    border-color: rgba(0, 0, 0, .15);
+  }
+  .replies-wrapper .description {
+    display: none;
+    color: #717274;
+  }
+  .replies-wrapper:hover .description {
+    display: inline;
+  }
+  .replies {
+    margin: 4px 0 0 4px;
+  }
+  .replies img {
+    border-radius: 3px;
+  }
+  .replies a, .replies .description {
+    font-size: 12px;
+    margin-left: 3px;
+    vertical-align: 8px;
+  }
+  .replies a {
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
