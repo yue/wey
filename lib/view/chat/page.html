@@ -99,8 +99,9 @@
   }
 
   .msg {
-    margin: 10px 10px 0 10px;
+    margin-top: 10px;
     display: table;
+    width: 100%;
     border-collapse: collapse;
   }
   .msg.folded {
@@ -109,6 +110,15 @@
   .msg > div {
     display: table-cell;
     vertical-align: top;
+  }
+  .msg > .content {
+    padding-right: 10px;
+  }
+  .msg > .avatar {
+    padding-left: 10px;
+  }
+  .msg .avatar {
+    width: 36px;
   }
   .msg .avatar > * {
     margin-right: 10px;
@@ -205,7 +215,7 @@
     border-radius: 8px;
   }
   .attachment .content {
-    padding: 0 12px;
+    padding-left: 10px;
   }
   .attachment .sender {
     margin: 4px 0 4px 0;
