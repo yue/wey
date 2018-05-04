@@ -78,7 +78,7 @@
     {{/each}}
     </div>
     {{/if}}
-    {{#if message.isThreadParent}}
+    {{#displayRepliesButton messageList message}}
     <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
       {{#each message.replyUsers}}
       <img width="24" height="24" src="{{avatar}}"/>
@@ -86,6 +86,6 @@
       <a href="#" onclick="return false">{{message.replyCount}} replies</a>
       <span class="description">View thread</span>
     </div></div>
-    {{/if}}
+    {{/displayRepliesButton}}
   </div>
 </div>
