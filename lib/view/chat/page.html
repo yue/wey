@@ -314,7 +314,7 @@
   }
   // External API to add a new message.
   var messages = document.getElementById('messages')
-  window.addMessage = function(html, firstUnread) {
+  window.addMessage = function(html, firstUnread, fromCurrentUser) {
     if (firstUnread) {
       var marker = document.getElementById('unread-marker')
       if (marker)
@@ -325,7 +325,7 @@
       messages.appendChild(children[i])
     // Scroll to bottom when it is the first unread message or when the channel
     // is focused.
-    if (firstUnread || document.hasFocus())
+    if (firstUnread || fromCurrentUser || document.hasFocus())
       window.scrollTo(0, document.body.scrollHeight)
   }
   // External API to delete message.
