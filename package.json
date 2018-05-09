@@ -1,6 +1,6 @@
 {
   "name": "wey",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "lib/main.js",
   "description": "Fast open source Slack desktop app",
   "build": {
