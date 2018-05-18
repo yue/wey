@@ -25,7 +25,11 @@
   <div class="content">
     {{#isChannel messageList}}
       {{#isThreadParent message}}
-      {{else}}<nav class="extra-menu"><a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread">💬</a></nav>
+      {{else}}
+    <nav class="extra-menu">
+      <a href="#" onclick="wey.openReactionMenu('{{messageList.id}}', '{{message.id}}'); return false" title="Add reaction">😶</a>
+      <a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread">💬</a>
+    </nav>
       {{/isThreadParent}}
     {{/isChannel}}
 
@@ -75,9 +79,15 @@
     {{/each}}
     {{#if message.reactions}}
     <div class="reactions">
-    {{#each message.reactions}}
-    <button>{{{content}}}<span class="count">{{count}}</span></button>
-    {{/each}}
+      {{#each message.reactions}}
+      <button title="{{name}}"
+        onclick="wey.toggleReaction('{{name}}', '{{../messageList.id}}', '{{../message.id}}')"
+        {{#if hasCurrentUser}}
+          class="user-emoted"
+        {{/if}}
+      >{{{content}}}<span class="count">{{count}}</span></button>
+      {{/each}}
+      <button title="Add reaction" class="add-emote" onclick="wey.openReactionMenu('{{messageList.id}}', '{{message.id}}')">😶<span class="count">+</span></button>
     </div>
     {{/if}}
     {{#isChannel messageList}}

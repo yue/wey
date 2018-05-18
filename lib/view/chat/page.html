@@ -275,16 +275,37 @@
     margin-bottom: 4px;
   }
   .reactions button {
+    color: #717274;
+    cursor: pointer;
     font-size: 11px;
     line-height: 16px;
-    padding: 2px 3px;
     margin: 0;
+    padding: 2px 3px;
     background: #FFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
   }
+  .reactions button:hover {
+    color: #0576b9;
+    background: #eee;
+  }
+  .reactions button.user-emoted {
+    color: #0576b9;
+    background-color: #e6f6ff;
+    border-color: #0576b9;
+  }
+  .reactions button.user-emoted:hover {
+    color: #0576b9;
+    background: #b1bcc3;
+  }
+  .reactions button.user-emoted:focus {
+    color: #fff;
+    background: #0576b9;
+  }
+  .reactions button.add-emote {
+    filter: grayscale(100%);
+  }
   .reactions .count {
-    color: #717274;
     padding: 0 1px 0 3px;
   }
 
@@ -362,7 +383,7 @@
   }
   // External API to delete message.
   window.deleteMessage = function(id) {
-    messages.removeChild(document.getElementById(id))
+    messages.removeChild(document.getElementById(`msg${id.replace('.', '_')}`))
   }
   // Which element is on top.
   var topElement = null
@@ -378,7 +399,7 @@
   }
   // External API to modify message.
   window.modifyMessage = function(id, html) {
-    var msg = document.getElementById(id)
+    var msg = document.getElementById(`msg${id.replace('.', '_')}`)
     if (msg) {
       // Ignore dayMarker and unreadMarker, only find the message part.
       var newMsg
