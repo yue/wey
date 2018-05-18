@@ -18,7 +18,7 @@
     "dist": "yackage dist out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\""
   },
   "engines": {
-    "node": ">=8",
+    "node": ">=8.11.2",
     "yode": "0.3.4"
   },
   "license": "GPL-3.0",
