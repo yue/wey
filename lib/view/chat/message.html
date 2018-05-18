@@ -14,7 +14,11 @@
   <hr class="line">
 </div>
 {{/isFirstUnread}}
-<div id="msg{{replace message.id '.' '_'}}" class="msg {{#if message.isFolded}}folded{{/if}}">
+<div id="msg{{replace message.id '.' '_'}}"
+     class="msg {{#if message.isFolded}}isFolded{{/if}} {{#isChannel messageList}}isChannel {{#isTopLevel message}}isTopLevel{{/isTopLevel}}{{/isChannel}}"
+     data-channel-id="{{messageList.id}}"
+     data-message-id="{{message.id}}"
+>
   <div class="avatar">
     {{#if message.isFolded}}
     <div class="dummy"></div>
@@ -22,13 +26,7 @@
     <img width="36" height="36" src="{{message.user.avatar}}"/>
     {{/if}}
   </div>
-  <div class="content">
-    {{#isChannel messageList}}
-      {{#isThreadParent message}}
-      {{else}}<nav class="extra-menu"><a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread">💬</a></nav>
-      {{/isThreadParent}}
-    {{/isChannel}}
-
+  <div class="content" onmouseenter="MessageHelper.enter(this)">
     {{#unless message.isFolded}}
     <div class="sender">
       <div class="name">{{message.user.name}}</div>

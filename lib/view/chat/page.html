@@ -137,7 +137,15 @@
   }
   .extra-menu a:active {
     filter: grayscale(100%) brightness(90%);
+    background: #eee;
   }
+  .extra-menu a.extra-menu-thread {
+    display: none;
+  }
+  .isTopLevel .extra-menu a.extra-menu-thread {
+    display: inline-block;
+  }
+
   .msg > div {
     display: table-cell;
     vertical-align: top;
@@ -328,6 +336,46 @@
   {{> messagePartial messageList=../messageList message=this}}
 {{/each}}
 </div>
+
+<nav id="extra-menu" class="extra-menu">
+  <a class="extra-menu-reaction" href="#" onclick="return MessageHelper.openReactionMenu(this)" title="Add reaction">😶</a>
+  <a class="extra-menu-thread" href="#" onclick="return MessageHelper.openThread(this)" title="Start thread">💬</a>
+</nav>
+<script>
+  // Optimize extra-menu by not replicating it on every message; just move it onMouseEnter
+  const extraMenu = document.getElementById('extra-menu');
+
+  function getMessageData(element) {
+    for (let parent = element; parent = parent.parentNode;) {
+      if (parent === window)
+        return false;
+      if (parent.dataset && parent.dataset.channelId)
+        return parent.dataset;
+    }
+    return false;
+  }
+
+  const MessageHelper = {
+    enter: target => {
+      target.insertBefore(extraMenu, target.firstChild);
+    },
+
+    openReactionMenu: button => {
+      const data = getMessageData(button);
+      if (data)
+        wey.openReactionMenu(data.channelId, data.messageId);
+      return false;
+    },
+
+    openThread: button => {
+      const data = getMessageData(button);
+      if (data)
+        wey.openThread(data.messageId);
+      return false;
+    }
+  };
+</script>
+
 <script type="text/javascript" charset="utf-8">
   // Scroll to the unread marker, or bottom if not found.
   var marker = document.getElementById('unread-marker')
