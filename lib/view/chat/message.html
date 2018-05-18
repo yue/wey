@@ -14,11 +14,7 @@
   <hr class="line">
 </div>
 {{/isFirstUnread}}
-{{#if message.isFolded}}
-<div id="{{message.id}}" class="msg folded">
-{{else}}
-<div id="{{message.id}}" class="msg">
-{{/if}}
+<div id="msg{{replace message.id '.' '_'}}" class="msg {{#if message.isFolded}}folded{{/if}}">
   <div class="avatar">
     {{#if message.isFolded}}
     <div class="dummy"></div>
