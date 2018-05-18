@@ -74,9 +74,14 @@
     {{/each}}
     {{#if message.reactions}}
     <div class="reactions">
-    {{#each message.reactions}}
-    <button>{{{content}}}<span class="count">{{count}}</span></button>
-    {{/each}}
+      {{#each message.reactions}}
+      <button title="{{name}}"
+        onclick="wey.toggleReaction('{{name}}', '{{../messageList.id}}', '{{../message.id}}')"
+        {{#if hasCurrentUser}}
+          class="user-emoted"
+        {{/if}}
+      >{{{content}}}<span class="count">{{count}}</span></button>
+      {{/each}}
     </div>
     {{/if}}
     {{#isChannel messageList}}{{#if message.isThreadParent}}
