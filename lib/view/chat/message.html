@@ -27,6 +27,12 @@
     {{/if}}
   </div>
   <div class="content">
+    {{#isChannel messageList}}
+      {{#isThreadParent message}}
+      {{else}}<nav class="extra-menu"><a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread">💬</a></nav>
+      {{/isThreadParent}}
+    {{/isChannel}}
+
     {{#unless message.isFolded}}
     <div class="sender">
       <div class="name">{{message.user.name}}</div>
@@ -78,14 +84,16 @@
     {{/each}}
     </div>
     {{/if}}
-    {{#displayRepliesButton messageList message}}
-    <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
-      {{#each message.replyUsers}}
-      <img width="24" height="24" src="{{avatar}}"/>
-      {{/each}}
-      <a href="#" onclick="return false">{{message.replyCount}} replies</a>
-      <span class="description">View thread</span>
-    </div></div>
-    {{/displayRepliesButton}}
+    {{#isChannel messageList}}
+      {{#isThreadParent message}}
+      <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
+        {{#each message.replyUsers}}
+        <img width="24" height="24" src="{{avatar}}"/>
+        {{/each}}
+        <a href="#" onclick="return false">{{message.replyCount}} replies</a>
+        <span class="description">View thread</span>
+      </div></div>
+      {{/isThreadParent}}
+    {{/isChannel}}
   </div>
 </div>
