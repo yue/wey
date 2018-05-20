@@ -101,32 +101,22 @@
   #extra-menu {
     display: none;
     position: absolute;
-    right: 9px;
-    margin-top: -.75em;
+    right: 20px;
     background: white;
     border: 1px solid #E8E8E8;
     border-radius: 6px;
-    font-size: 13px;
     user-select: none;
     white-space: nowrap;
   }
   #extra-menu a {
     display: inline-block;
     padding: 2px 3px;
-    filter: grayscale(100%);
     text-decoration: none;
   }
-  #extra-menu a:hover {
-    filter: grayscale(100%) sepia(100%) saturate(200%);
-  }
-  #extra-menu a:active {
-    filter: grayscale(100%) brightness(90%);
-    background: #eee;
-  }
-  #extra-menu a.extra-menu-thread {
+  #extra-menu a.start-thread {
     display: none;
   }
-  .can-start-thread #extra-menu a.extra-menu-thread {
+  .can-start-thread #extra-menu a.start-thread {
     display: inline-block;
   }
 
@@ -136,11 +126,17 @@
     width: 100%;
     border-collapse: collapse;
   }
+  .msg #extra-menu {
+    margin-top: -.75em;
+  }
   .msg.folded {
     border-top-width: 0;
   }
+  .msg.folded #extra-menu {
+    margin-top: -1.5em;
+  }
   .msg:hover {
-    box-shadow: 0 0 10px #E8E8E8;
+    background-color: #F9F9F9;
   }
   .msg:hover #extra-menu {
     display: block;
@@ -332,19 +328,20 @@
 </style>
 </head>
 <body>
+<nav id="extra-menu">
+  <a class="add-reaction" href="#" onclick="return MessageHelper.openReactionMenu(this)" title="Add reaction">😶</a>
+  <a class="start-thread" href="#" onclick="return MessageHelper.openThread(this)" title="Start thread">💬</a>
+</nav>
+
 <div id="messages">
 {{#each messages}}
   {{> messagePartial messageList=../messageList message=this}}
 {{/each}}
 </div>
 
-<nav id="extra-menu">
-  <a class="extra-menu-reaction" href="#" onclick="return MessageHelper.openReactionMenu(this)" title="Add reaction">😶</a>
-  <a class="extra-menu-thread" href="#" onclick="return MessageHelper.openThread(this)" title="Start thread">💬</a>
-</nav>
 <script>
   // Optimize extra-menu by not replicating it on every message; just move it onMouseEnter
-  const extraMenu = document.getElementById('extra-menu');
+  const extraMenu = document.getElementById('extra-menu')
 
   function getMessageData(element) {
     for (let parent = element; parent = parent.parentNode;) {
