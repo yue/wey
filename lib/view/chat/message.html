@@ -14,7 +14,7 @@
   <hr class="line">
 </div>
 {{/isFirstUnread}}
-<div id="msg{{replace message.id '.' '_'}}"
+<div id="{{normalizeId message.id}}"
      class="msg {{#if message.isFolded}}isFolded{{/if}} {{#isChannel messageList}}isChannel {{#isTopLevel message}}isTopLevel{{/isTopLevel}}{{/isChannel}}"
      data-channel-id="{{messageList.id}}"
      data-message-id="{{message.id}}"

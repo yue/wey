@@ -409,9 +409,13 @@
     if (firstUnread || fromCurrentUser || document.hasFocus())
       window.scrollTo(0, document.body.scrollHeight)
   }
+  // Helper to convert message id to DOM id.
+  function normalizeId(id) {
+    return 'msg' + id.replace('.', '_')
+  }
   // External API to delete message.
   window.deleteMessage = function(id) {
-    messages.removeChild(document.getElementById(id))
+    messages.removeChild(document.getElementById(normalizeId(id)))
   }
   // Which element is on top.
   var topElement = null
@@ -427,7 +431,7 @@
   }
   // External API to modify message.
   window.modifyMessage = function(id, html) {
-    var msg = document.getElementById(id)
+    var msg = document.getElementById(normalizeId(id))
     if (msg) {
       // Ignore dayMarker and unreadMarker, only find the message part.
       var newMsg
