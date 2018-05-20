@@ -335,6 +335,8 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  // Which element is on top.
+  var topElement = null
   // Scroll to the unread marker, or bottom if not found.
   var marker = document.getElementById('unread-marker')
   if (marker) {
@@ -363,7 +365,7 @@
       messages.appendChild(children[i])
     // Scroll to bottom when it is the first unread message or when the channel
     // is focused.
-    if (firstUnread || fromCurrentUser || document.hasFocus())
+    if (fromCurrentUser || ((firstUnread || document.hasFocus()) && !topElement))
       window.scrollTo(0, document.body.scrollHeight)
   }
   // Helper to convert message id to DOM id.
@@ -374,11 +376,9 @@
   window.deleteMessage = function(id) {
     messages.removeChild(document.getElementById(normalizeId(id)))
   }
-  // Which element is on top.
-  var topElement = null
+  // Helper to scroll to previous top element.
   var scrollOffset = 0
   var ignoreNextScroll = false
-  // Helper to scroll to previous top element.
   function scrollToPreivousTopElement() {
     ignoreNextScroll = true
     if (topElement)
@@ -436,8 +436,11 @@
     }
     topElement = null
     scrollOffset = 0
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight)
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+      // Mark we want to be notified immediately when new message arrives.
+      wey.notifyDisplaying()
       return
+    }
     var messages = document.getElementsByClassName('msg')
     if (messages.length === 0)
       return
@@ -449,6 +452,8 @@
       topElement = messages[i]
       scrollOffset = rect.top
     }
+    // When navigating old messages, treat the page as unfocused.
+    wey.notifyNotDisplaying()
   }
   // Make sure the view is always scrolled at current message.
   window.onresize = scrollToPreivousTopElement
