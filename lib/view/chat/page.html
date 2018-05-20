@@ -109,11 +109,21 @@
   }
   .action-menu a {
     color: #717274;
-    padding: 0 3px;
+    padding: 0 5px;
+    display: inline-block;
     text-decoration: none;
+    margin-right: -4px;
+    border-right: 1px solid #E8E8E8;
+  }
+  .action-menu a:last-child {
+    margin-right: 0;
+    border: none;
   }
   .action-menu a:hover {
     color: #0576B9;
+  }
+  .starred .action-menu a.toggle-star {
+    color: #FC0;
   }
 
   .msg {
@@ -137,6 +147,9 @@
   .msg:hover .action-menu {
     display: block;
     float: right;
+  }
+  .msg.starred {
+    background-color: rgba(255, 204, 0, .1);
   }
   .msg > div {
     display: table-cell;
@@ -398,6 +411,7 @@
         if (newMsg.classList && newMsg.classList.contains('msg'))
           break
       }
+      msg.classList = newMsg.classList
       msg.innerHTML = newMsg.innerHTML
       scrollToPreivousTopElement()
     }
