@@ -98,7 +98,7 @@
     margin-top: -3px;
   }
 
-  .extra-menu {
+  .action-menu {
     display: none;
     position: absolute;
     right: 20px;
@@ -107,9 +107,13 @@
     border-radius: 6px;
     user-select: none;
   }
-  .extra-menu a {
+  .action-menu a {
+    color: #717274;
     padding: 0 3px;
     text-decoration: none;
+  }
+  .action-menu a:hover {
+    color: #0576B9;
   }
 
   .msg {
@@ -118,19 +122,19 @@
     width: 100%;
     border-collapse: collapse;
   }
-  .msg .extra-menu {
+  .msg .action-menu {
     margin-top: -.75em;
   }
   .msg.folded {
     border-top-width: 0;
   }
-  .msg.folded .extra-menu {
+  .msg.folded .action-menu {
     margin-top: -1.5em;
   }
   .msg:hover {
     background-color: #F9F9F9;
   }
-  .msg:hover .extra-menu {
+  .msg:hover .action-menu {
     display: block;
     float: right;
   }
@@ -288,7 +292,7 @@
   .replies-wrapper {
     height: 32px;
     max-width: 600px;
-    margin-left: -4px;
+    margin: 0 0 4px -4px;
     border: 1px solid transparent;
     border-radius: 6px;
     cursor: pointer;
@@ -317,7 +321,8 @@
   .replies a {
     font-weight: 700;
   }
-
+</style>
+<style type="text/css">
   {{{fontStyle}}}
 </style>
 </head>
