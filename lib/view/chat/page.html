@@ -98,7 +98,7 @@
     margin-top: -3px;
   }
 
-  #extra-menu {
+  .extra-menu {
     display: none;
     position: absolute;
     right: 20px;
@@ -108,16 +108,10 @@
     user-select: none;
     white-space: nowrap;
   }
-  #extra-menu a {
+  .extra-menu a {
     display: inline-block;
     padding: 2px 3px;
     text-decoration: none;
-  }
-  #extra-menu a.start-thread {
-    display: none;
-  }
-  .can-start-thread #extra-menu a.start-thread {
-    display: inline-block;
   }
 
   .msg {
@@ -126,19 +120,19 @@
     width: 100%;
     border-collapse: collapse;
   }
-  .msg #extra-menu {
+  .msg .extra-menu {
     margin-top: -.75em;
   }
   .msg.folded {
     border-top-width: 0;
   }
-  .msg.folded #extra-menu {
+  .msg.folded .extra-menu {
     margin-top: -1.5em;
   }
   .msg:hover {
     background-color: #F9F9F9;
   }
-  .msg:hover #extra-menu {
+  .msg:hover .extra-menu {
     display: block;
     float: right;
   }
@@ -328,51 +322,12 @@
 </style>
 </head>
 <body>
-<nav id="extra-menu">
-  <a class="add-reaction" href="#" onclick="return MessageHelper.openReactionMenu(this)" title="Add reaction">😶</a>
-  <a class="start-thread" href="#" onclick="return MessageHelper.openThread(this)" title="Start thread">💬</a>
-</nav>
 
 <div id="messages">
 {{#each messages}}
   {{> messagePartial messageList=../messageList message=this}}
 {{/each}}
 </div>
-
-<script>
-  // Optimize extra-menu by not replicating it on every message; just move it onMouseEnter
-  const extraMenu = document.getElementById('extra-menu')
-
-  function getMessageData(element) {
-    for (let parent = element; parent = parent.parentNode;) {
-      if (parent === window)
-        return false;
-      if (parent.dataset && parent.dataset.channelId)
-        return parent.dataset;
-    }
-    return false;
-  }
-
-  const MessageHelper = {
-    enter: target => {
-      target.insertBefore(extraMenu, target.firstChild);
-    },
-
-    openReactionMenu: button => {
-      const data = getMessageData(button);
-      if (data)
-        wey.openReactionMenu(data.channelId, data.messageId);
-      return false;
-    },
-
-    openThread: button => {
-      const data = getMessageData(button);
-      if (data)
-        wey.openThread(data.messageId);
-      return false;
-    }
-  };
-</script>
 
 <script type="text/javascript" charset="utf-8">
   // Scroll to the unread marker, or bottom if not found.
