@@ -15,10 +15,9 @@
 </div>
 {{/isFirstUnread}}
 <div id="{{normalizeId message.id}}"
-     class="msg {{#if message.isFolded}}isFolded{{/if}} {{#isChannel messageList}}isChannel {{#isTopLevel message}}isTopLevel{{/isTopLevel}}{{/isChannel}}"
+     class="msg {{#if message.isFolded}}folded{{/if}} {{#canStartThread message}}can-start-thread{{/canStartThread}}"
      data-channel-id="{{messageList.id}}"
-     data-message-id="{{message.id}}"
->
+     data-message-id="{{message.id}}">
   <div class="avatar">
     {{#if message.isFolded}}
     <div class="dummy"></div>
