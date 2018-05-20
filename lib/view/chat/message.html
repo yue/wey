@@ -23,12 +23,12 @@
     {{/if}}
   </div>
   <div class="content">
-    {{#isChannel messageList}}{{#canStartThread message}}
     <div class="action-menu">
+      {{#canStartThread messageList message}}
       <a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread"><i class="icon-comment"></i></a>
+      {{/canStartThread}}
       <a class="toggle-star" href="#" onclick="wey.setMessageStar('{{message.id}}', {{message.timestamp}}, {{#if message.hasStar}}false{{else}}true{{/if}}); return false" title="Star message"><i class="{{#if message.hasStar}}icon-star{{else}}icon-star-empty{{/if}}"></i></a>
     </div>
-    {{/canStartThread}}{{/isChannel}}
     {{#unless message.isFolded}}
     <div class="sender">
       <div class="name">{{message.user.name}}</div>
