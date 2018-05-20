@@ -99,20 +99,60 @@
   }
 
   .msg {
-    margin-top: 10px;
+    border-top: 6px solid transparent;
     display: table;
     width: 100%;
     border-collapse: collapse;
   }
   .msg.folded {
-    margin-top: 0;
+    border-top-width: 0;
   }
+  .msg:hover {
+    box-shadow: 0 0 10px #E8E8E8;
+  }
+  .extra-menu {
+    display: none;
+    position: absolute;
+    right: 9px;
+    margin-top: -.75em;
+    background: white;
+    border: 1px solid #E8E8E8;
+    border-radius: 6px;
+    font-size: 13px;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .msg:hover .extra-menu {
+    display: block;
+    float: right;
+  }
+  .extra-menu a {
+    display: inline-block;
+    padding: 2px 3px;
+    filter: grayscale(100%);
+    text-decoration: none;
+  }
+  .extra-menu a:hover {
+    filter: grayscale(100%) sepia(100%) saturate(200%);
+  }
+  .extra-menu a:active {
+    filter: grayscale(100%) brightness(90%);
+    background: #eee;
+  }
+  .extra-menu a.extra-menu-thread {
+    display: none;
+  }
+  .isTopLevel .extra-menu a.extra-menu-thread {
+    display: inline-block;
+  }
+
   .msg > div {
     display: table-cell;
     vertical-align: top;
   }
   .msg > .content {
     padding-right: 10px;
+    word-wrap: break-word;
   }
   .msg > .avatar {
     padding-left: 10px;
@@ -174,9 +214,10 @@
     font-weight: normal;
   }
   .text pre, .text code {
-    word-break: break-all;
     font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
     tab-size: 2;
+    word-break: break-word;
+    word-wrap: break-word;
   }
   .text pre {
     padding: .5rem;
@@ -243,16 +284,37 @@
     margin-bottom: 4px;
   }
   .reactions button {
+    color: #717274;
+    cursor: pointer;
     font-size: 11px;
     line-height: 16px;
-    padding: 2px 3px;
     margin: 0;
+    padding: 2px 3px;
     background: #FFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
   }
+  .reactions button:hover {
+    color: #0576b9;
+    background: #eee;
+  }
+  .reactions button.user-emoted {
+    color: #0576b9;
+    background-color: #e6f6ff;
+    border-color: #0576b9;
+  }
+  .reactions button.user-emoted:hover {
+    color: #0576b9;
+    background: #b1bcc3;
+  }
+  .reactions button.user-emoted:focus {
+    color: #fff;
+    background: #0576b9;
+  }
+  .reactions button.add-emote {
+    filter: grayscale(100%);
+  }
   .reactions .count {
-    color: #717274;
     padding: 0 1px 0 3px;
   }
 
@@ -296,6 +358,46 @@
   {{> messagePartial messageList=../messageList message=this}}
 {{/each}}
 </div>
+
+<nav id="extra-menu" class="extra-menu">
+  <a class="extra-menu-reaction" href="#" onclick="return MessageHelper.openReactionMenu(this)" title="Add reaction">😶</a>
+  <a class="extra-menu-thread" href="#" onclick="return MessageHelper.openThread(this)" title="Start thread">💬</a>
+</nav>
+<script>
+  // Optimize extra-menu by not replicating it on every message; just move it onMouseEnter
+  const extraMenu = document.getElementById('extra-menu');
+
+  function getMessageData(element) {
+    for (let parent = element; parent = parent.parentNode;) {
+      if (parent === window)
+        return false;
+      if (parent.dataset && parent.dataset.channelId)
+        return parent.dataset;
+    }
+    return false;
+  }
+
+  const MessageHelper = {
+    enter: target => {
+      target.insertBefore(extraMenu, target.firstChild);
+    },
+
+    openReactionMenu: button => {
+      const data = getMessageData(button);
+      if (data)
+        wey.openReactionMenu(data.channelId, data.messageId);
+      return false;
+    },
+
+    openThread: button => {
+      const data = getMessageData(button);
+      if (data)
+        wey.openThread(data.messageId);
+      return false;
+    }
+  };
+</script>
+
 <script type="text/javascript" charset="utf-8">
   // Scroll to the unread marker, or bottom if not found.
   var marker = document.getElementById('unread-marker')
@@ -330,7 +432,7 @@
   }
   // External API to delete message.
   window.deleteMessage = function(id) {
-    messages.removeChild(document.getElementById(id))
+    messages.removeChild(document.getElementById(`msg${id.replace('.', '_')}`))
   }
   // Which element is on top.
   var topElement = null
@@ -346,7 +448,7 @@
   }
   // External API to modify message.
   window.modifyMessage = function(id, html) {
-    var msg = document.getElementById(id)
+    var msg = document.getElementById(`msg${id.replace('.', '_')}`)
     if (msg) {
       // Ignore dayMarker and unreadMarker, only find the message part.
       var newMsg

@@ -14,11 +14,11 @@
   <hr class="line">
 </div>
 {{/isFirstUnread}}
-{{#if message.isFolded}}
-<div id="{{message.id}}" class="msg folded">
-{{else}}
-<div id="{{message.id}}" class="msg">
-{{/if}}
+<div id="msg{{replace message.id '.' '_'}}"
+     class="msg {{#if message.isFolded}}isFolded{{/if}} {{#isChannel messageList}}isChannel {{#isTopLevel message}}isTopLevel{{/isTopLevel}}{{/isChannel}}"
+     data-channel-id="{{messageList.id}}"
+     data-message-id="{{message.id}}"
+>
   <div class="avatar">
     {{#if message.isFolded}}
     <div class="dummy"></div>
@@ -26,7 +26,7 @@
     <img width="36" height="36" src="{{message.user.avatar}}"/>
     {{/if}}
   </div>
-  <div class="content">
+  <div class="content" onmouseenter="MessageHelper.enter(this)">
     {{#unless message.isFolded}}
     <div class="sender">
       <div class="name">{{message.user.name}}</div>
@@ -73,19 +73,27 @@
     {{/each}}
     {{#if message.reactions}}
     <div class="reactions">
-    {{#each message.reactions}}
-    <button>{{{content}}}<span class="count">{{count}}</span></button>
-    {{/each}}
+      {{#each message.reactions}}
+      <button title="{{name}}"
+        onclick="wey.toggleReaction('{{name}}', '{{../messageList.id}}', '{{../message.id}}')"
+        {{#if hasCurrentUser}}
+          class="user-emoted"
+        {{/if}}
+      >{{{content}}}<span class="count">{{count}}</span></button>
+      {{/each}}
+      <button title="Add reaction" class="add-emote" onclick="wey.openReactionMenu('{{messageList.id}}', '{{message.id}}')">😶<span class="count">+</span></button>
     </div>
     {{/if}}
-    {{#displayRepliesButton messageList message}}
-    <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
-      {{#each message.replyUsers}}
-      <img width="24" height="24" src="{{avatar}}"/>
-      {{/each}}
-      <a href="#" onclick="return false">{{message.replyCount}} replies</a>
-      <span class="description">View thread</span>
-    </div></div>
-    {{/displayRepliesButton}}
+    {{#isChannel messageList}}
+      {{#isThreadParent message}}
+      <div onclick="wey.openThread('{{message.id}}'); return false" class="replies-wrapper"><div class="replies">
+        {{#each message.replyUsers}}
+        <img width="24" height="24" src="{{avatar}}"/>
+        {{/each}}
+        <a href="#" onclick="return false">{{message.replyCount}} replies</a>
+        <span class="description">View thread</span>
+      </div></div>
+      {{/isThreadParent}}
+    {{/isChannel}}
   </div>
 </div>
