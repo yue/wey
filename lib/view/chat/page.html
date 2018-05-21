@@ -287,16 +287,37 @@
     margin-bottom: 4px;
   }
   .reactions button {
+    color: #717274;
+    cursor: pointer;
     font-size: 11px;
     line-height: 16px;
-    padding: 2px 3px;
     margin: 0;
+    padding: 2px 3px;
     background: #FFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
   }
+  .reactions button:hover {
+    color: #0576b9;
+    background: #eee;
+  }
+  .reactions button.user-emoted {
+    color: #0576b9;
+    background-color: #e6f6ff;
+    border-color: #0576b9;
+  }
+  .reactions button.user-emoted:hover {
+    color: #0576b9;
+    background: #b1bcc3;
+  }
+  .reactions button.user-emoted:focus {
+    color: #fff;
+    background: #0576b9;
+  }
+  .reactions button.add-emote {
+    filter: grayscale(100%);
+  }
   .reactions .count {
-    color: #717274;
     padding: 0 1px 0 3px;
   }
 
@@ -418,7 +439,7 @@
   function findParent(tagName, target) {
     var loops = 0
     while (target && ++loops < 4) {
-      if (target.tagName.toLowerCase() === tagName)
+      if (target.tagName && target.tagName.toLowerCase() === tagName)
         return target
       target = target.parentNode
     }
