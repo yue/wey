@@ -75,7 +75,7 @@
     {{#if message.reactions}}
     <div class="reactions">
     {{#each message.reactions}}
-    <button>{{{content}}}<span class="count">{{count}}</span></button>
+    <button{{#if reacted}} class="reacted"{{/if}}>{{{content}}}<span class="count">{{count}}</span></button>
     {{/each}}
     </div>
     {{/if}}
