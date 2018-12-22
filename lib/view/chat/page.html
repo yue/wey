@@ -382,8 +382,8 @@
   }
   // Helper to dynamically load an image which requires authorization.
   function loadImage(element, url, mimeType) {
-    callbacks[++nextCallbackId] = function(b64) {
-      element.src = 'data:' + mimeType + ';base64,' + b64
+    callbacks[++nextCallbackId] = function(result) {
+      element.src = result
     }
     wey.fetch(url, nextCallbackId)
   }
