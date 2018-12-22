@@ -72,6 +72,16 @@
       </div>
     </div>
     {{/each}}
+    {{#each message.files}}
+    <div class="file">
+      <div class="name">{{name}}</div>
+      {{#if image}}
+        <div class="image">
+          <img class="delayed-image" data-url="{{image}}" data-mimetype="{{mimeType}}" width="{{imageWidth}}" height="{{imageHeight}}"/>
+        </div>
+      {{/if}}
+    </div>
+    {{/each}}
     {{#if message.reactions}}
     <div class="reactions">
     {{#each message.reactions}}
