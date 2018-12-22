@@ -381,7 +381,7 @@
     delete callbacks[id]
   }
   // Helper to dynamically load an image which requires authorization.
-  function loadImage(element, url, mimeType) {
+  function loadImage(element, url) {
     callbacks[++nextCallbackId] = function(result) {
       element.src = result
     }
@@ -389,11 +389,11 @@
   }
   // Load all images.
   function loadAllImages() {
-    var imgs = document.getElementsByClassName('delayed-image')
+    var imgs = [].slice.call(document.getElementsByClassName('delayed-image'))
     for (var i = 0; i < imgs.length; ++i) {
       var img = imgs[i]
-      if (!img.getAttribute('src'))
-        loadImage(img, img.getAttribute('data-url'), img.getAttribute('data-mimetype'))
+      img.classList.remove('delayed-image')
+      loadImage(img, img.getAttribute('data-url'))
     }
   }
   loadAllImages()

@@ -77,7 +77,7 @@
       <div class="name">{{name}}</div>
       {{#if image}}
         <div class="image">
-          <img class="delayed-image" data-url="{{image}}" data-mimetype="{{mimeType}}" width="{{imageWidth}}" height="{{imageHeight}}"/>
+          <img {{#if isImageCached}}src="{{image}}"{{else}}class="delayed-image" data-url="{{image}}"{{/if}} width="{{imageWidth}}" height="{{imageHeight}}"/>
         </div>
       {{/if}}
     </div>
