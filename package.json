@@ -34,13 +34,14 @@
     "@slack/client": "4.8.0",
     "axios": "0.18.0",
     "binary-search-bounds": "2.0.4",
-    "fetch-yode": "0.2.0",
     "download-yue": "2.x",
+    "fetch-yode": "0.2.0",
     "fs-extra": "5.0.0",
     "gui": "0.5.1",
     "keytar": "4.3.0",
     "mini-signals": "1.1.1",
     "opn": "5.3.0",
+    "readable-size": "0.2.0",
     "string-replace-async": "1.2.1"
   },
   "devDependencies": {

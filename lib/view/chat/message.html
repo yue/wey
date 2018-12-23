@@ -73,14 +73,17 @@
     </div>
     {{/each}}
     {{#each message.files}}
-    <div class="file">
+    {{#if image}}
+    <div class="image">
       <div class="name">{{name}}</div>
-      {{#if image}}
-        <div class="image">
-          <img {{#if isImageCached}}src="{{image}}"{{else}}class="delayed-image" data-url="{{image}}"{{/if}} width="{{imageWidth}}" height="{{imageHeight}}"/>
-        </div>
-      {{/if}}
+      <img {{#if isImageCached}}src="{{image}}"{{else}}class="delayed-image" data-url="{{image}}"{{/if}} width="{{imageWidth}}" height="{{imageHeight}}"/>
     </div>
+    {{else}}
+    <div onclick="wey.openLink('{{downloadUrl}}'); return false" class="file">
+      <div class="name">{{name}}</div>
+      <div class="type">{{readableSize}} {{typeName}}</div>
+    </div>
+    {{/if}}
     {{/each}}
     {{#if message.reactions}}
     <div class="reactions">
