@@ -14,8 +14,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "install": "fetch-yode",
-    "build": "yackage build out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\"",
-    "dist": "yackage dist out --cache-dir yode --unpack \"+(*.node|*.html|*.png)\""
+    "build": "yackage build out --cache-dir yode --unpack \"+(*.node|*.html|*.png|*.gif)\"",
+    "dist": "yackage dist out --cache-dir yode --unpack \"+(*.node|*.html|*.png|*.gif)\""
   },
   "engines": {
     "node": "^10",
@@ -36,7 +36,6 @@
     "binary-search-bounds": "2.0.4",
     "fetch-yode": "0.2.0",
     "download-yue": "2.x",
-    "file-url": "2.0.2",
     "fs-extra": "5.0.0",
     "gui": "0.5.1",
     "keytar": "4.3.0",
