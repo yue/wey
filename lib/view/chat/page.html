@@ -381,6 +381,24 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  // Which element is on top.
+  var topElement = null
+  // Scroll to the unread marker, or bottom if not found.
+  function scrollToUnreadMarker() {
+    var marker = document.getElementById('unread-marker')
+    if (marker) {
+      var rect = marker.getBoundingClientRect()
+      window.scrollTo(0, rect.top + window.pageYOffset - (window.innerHeight / 2))
+    } else {
+      window.scrollTo(0, document.body.scrollHeight)
+    }
+  }
+  // For IE we need to scroll after ready, as the window body's size may be
+  // incorrect before showing the browser.
+  // For morden browsers scrolling before showing has the best visual effect.
+  var isIE = /Trident|MSIE/.test(navigator.userAgent)
+  if (!isIE)
+    scrollToUnreadMarker()
   // Helper to pass callbacks to UI.
   var callbacks = {}
   var nextCallbackId = 0
@@ -414,8 +432,6 @@
     wrapper.innerHTML = html
     return wrapper.childNodes
   }
-  // Which element is on top.
-  var topElement = null
   // External API to add a new message.
   var messages = document.getElementById('messages')
   window.addMessage = function(html, firstUnread, fromCurrentUser) {
@@ -526,16 +542,9 @@
   window.onresize = scrollToPreivousTopElement
   // We are ready.
   wey.ready()
-  // Scroll to the unread marker, or bottom if not found.
-  // Note: this must be done after ready, as the window body's size may be
-  // incorrect before showing the browser.
-  var marker = document.getElementById('unread-marker')
-  if (marker) {
-    var rect = marker.getBoundingClientRect()
-    window.scrollTo(0, rect.top + window.pageYOffset - (window.innerHeight / 2))
-  } else {
-    window.scrollTo(0, document.body.scrollHeight)
-  }
+  // See comment above on IE.
+  if (isIE)
+    scrollToUnreadMarker()
 </script>
 </body>
 </html>
