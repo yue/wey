@@ -19,7 +19,7 @@
   },
   "engines": {
     "node": "^10",
-    "yode": "0.4.1"
+    "yode": "0.4.2"
   },
   "license": "GPL-3.0",
   "homepage": "https://github.com/yue/wey",
