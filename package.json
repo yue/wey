@@ -6,7 +6,8 @@
   "build": {
     "appId": "org.yue.wey",
     "productName": "Wey",
-    "copyright": "Copyright © 2018 Cheng Zhao"
+    "copyright": "Copyright © 2018 Cheng Zhao",
+    "unpack": "+(*.node|*.html|*.png|*.gif)"
   },
   "bin": {
     "wey": "./scripts/start.js"
@@ -14,8 +15,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "install": "fetch-yode",
-    "build": "yackage build out --cache-dir yode --unpack \"+(*.node|*.html|*.png|*.gif)\"",
-    "dist": "yackage dist out --cache-dir yode --unpack \"+(*.node|*.html|*.png|*.gif)\""
+    "build": "yackage build out --cache-dir yode",
+    "dist": "yackage dist out --cache-dir yode"
   },
   "engines": {
     "node": "^10",
@@ -45,6 +46,6 @@
     "string-replace-async": "1.2.1"
   },
   "devDependencies": {
-    "yackage": "0.2.7"
+    "yackage": "0.2.8"
   }
 }
