@@ -47,6 +47,6 @@
     "string-replace-async": "1.2.1"
   },
   "devDependencies": {
-    "yackage": "0.2.9"
+    "yackage": "0.2.10"
   }
 }
