@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@slack/client": "4.8.0",
-    "axios": "0.18.0",
+    "axios": "^0.19.2",
     "binary-search-bounds": "2.0.4",
     "download-yue": "2.x",
     "fetch-yode": "0.2.0",
