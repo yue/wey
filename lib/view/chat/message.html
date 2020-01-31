@@ -30,7 +30,7 @@
     </div>
     {{#unless message.isFolded}}
     <div class="sender">
-      <div class="name">{{message.user.name}}</div>
+      <div class="name" onclick="wey.getProfile('{{message.id}}', {{message.timestamp}}); return false" class="profile">{{message.user.name}}</div>
       {{#if message.user.statusEmoji}}
         {{{message.user.statusEmoji}}}
       {{/if}}
