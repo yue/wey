@@ -19,8 +19,8 @@
     "dist": "yackage dist out --cache-dir yode"
   },
   "engines": {
-    "node": "^10",
-    "yode": "0.4.2"
+    "node": "^12",
+    "yode": "0.5.0"
   },
   "license": "GPL-3.0",
   "homepage": "https://github.com/yue/wey",
@@ -32,14 +32,14 @@
     "url": "https://github.com/yue/wey/issues"
   },
   "dependencies": {
-    "@slack/client": "4.8.0",
+    "@slack/client": "5.0.2",
     "axios": "0.18.0",
     "binary-search-bounds": "2.0.4",
     "download-yue": "2.x",
     "fetch-yode": "0.2.0",
     "fs-extra": "5.0.0",
-    "gui": "0.6.3",
-    "keytar": "4.3.0",
+    "gui": "0.7.0",
+    "keytar": "5.4.0",
     "mini-signals": "1.1.1",
     "opn": "5.3.0",
     "readable-size": "0.2.0",
