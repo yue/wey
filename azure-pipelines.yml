@@ -1,0 +1,30 @@
+trigger:
+- refs/heads/*
+- refs/pull/*/merge
+- refs/tags/*
+
+jobs:
+- job: windows_build
+  displayName: 'Build for Windows'
+  pool:
+    vmImage: 'VS2017-Win2016'
+  steps:
+  - template: azure-pipelines-template.yml
+
+- job: macos_build
+  displayName: 'Build for macOS'
+  pool:
+    vmImage: 'macOS-10.14'
+  steps:
+  - template: azure-pipelines-template.yml
+
+- job: linux_build
+  displayName: 'Build for Linux'
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y libgtk-3-dev
+    displayName: Install dependencies
+  - template: azure-pipelines-template.yml
