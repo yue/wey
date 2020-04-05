@@ -5,11 +5,11 @@ notifications:
 
 language: node_js
 node_js:
-  - 10
+  - 12
 os:
   - osx
   - linux
-osx_image: xcode10.1
+osx_image: xcode10.3
 dist: trusty
 
 addons:
