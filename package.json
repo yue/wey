@@ -9,18 +9,10 @@
     "copyright": "Copyright © 2018 Cheng Zhao",
     "unpack": "+(*.node|*.html|*.png|*.gif)"
   },
-  "bin": {
-    "wey": "./scripts/start.js"
-  },
   "scripts": {
-    "start": "node scripts/start.js",
-    "install": "fetch-yode",
-    "build": "yackage build out --cache-dir yode",
-    "dist": "yackage dist out --cache-dir yode"
-  },
-  "engines": {
-    "node": "^12",
-    "yode": "0.5.1"
+    "start": "yode .",
+    "build": "yackage build out",
+    "dist": "yackage dist out"
   },
   "license": "GPL-3.0",
   "homepage": "https://github.com/yue/wey",
@@ -36,10 +28,9 @@
     "@slack/web-api": "5.8.0",
     "axios": "0.19.2",
     "binary-search-bounds": "2.0.4",
-    "download-yue": "2.x",
-    "fetch-yode": "0.2.0",
+    "fetch-yode": "1.0.x",
     "fs-extra": "5.0.0",
-    "gui": "0.7.0",
+    "gui": "0.8.1",
     "keytar": "5.4.0",
     "mini-signals": "1.1.1",
     "opn": "5.3.0",
@@ -48,6 +39,6 @@
     "string-replace-async": "1.2.1"
   },
   "devDependencies": {
-    "yackage": "0.2.12"
+    "yackage": "0.3.x"
   }
 }
