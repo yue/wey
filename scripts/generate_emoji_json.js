@@ -9,7 +9,7 @@ const target = path.resolve(__dirname, '..', 'lib', 'service', 'slack', 'emoji.j
 
 main()
 
-async function main() {
+ const main=async()=> {
   const {data} = await axios(emojiJsonUrl)
   const outputJson = {}
   for (const d of data) {
@@ -47,7 +47,7 @@ function skinToneToId(skin) {
   }
 }
 
-function codeToNative(unified) {
+const codeToNative=(unified)=> {
   const codes = unified.split('-').map((u) => parseInt(u, 16))
   return String.fromCodePoint.apply(null, codes)
 }
