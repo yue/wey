@@ -26,10 +26,10 @@
   "dependencies": {
     "@slack/rtm-api": "5.0.3",
     "@slack/web-api": "5.8.0",
-    "axios": "0.19.2",
+    "axios": "0.20.0",
     "binary-search-bounds": "2.0.4",
     "fetch-yode": "1.0.x",
-    "fs-extra": "5.0.0",
+    "fs-extra": "9.0.1",
     "gui": "0.8.3-2",
     "keytar": "5.4.0",
     "mini-signals": "1.1.1",
