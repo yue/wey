@@ -14,7 +14,7 @@
   <hr class="line">
 </div>
 {{/isFirstUnread}}
-<div id="{{normalizeId message.id}}" class="msg {{#if message.hasStar}}starred{{/if}} {{#if message.isFolded}}folded{{/if}}">
+<div id="{{normalizeId message.id}}" class="msg {{#if message.isFolded}}folded{{/if}}">
   <div class="avatar">
     {{#if message.isFolded}}
     <div class="dummy"></div>
@@ -26,7 +26,7 @@
     <div class="action-menu">
       {{~#canStartThread messageList message~}}
       <a href="#" onclick="wey.openThread('{{message.id}}'); return false" title="Start thread"><i class="icon-comment"></i></a>
-      {{~/canStartThread~}}<a class="toggle-star" href="#" onclick="wey.setMessageStar('{{message.id}}', {{message.timestamp}}, {{revert message.hasStar}}); return false" title="Star message"><i class="{{#if message.hasStar}}icon-star{{else}}icon-star-empty{{/if}}"></i></a>
+      {{~/canStartThread~}}<a class="toggle-star" href="#" onclick="wey.setMessageStar('{{message.id}}', {{message.timestamp}}, {{revert message.hasStar}}); return false" title="Star message"><i class="{{#if message.hasStar}}icon-thumbs-up-alt{{else}}icon-thumbs-up{{/if}}"></i></a>
     </div>
     {{#unless message.isFolded}}
     <div class="sender">
